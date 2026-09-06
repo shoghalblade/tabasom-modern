@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v6
+// Tabasom Clinic — interactions v7
 (function () {
   'use strict';
 
@@ -70,47 +70,60 @@
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
   }
 
-  // ---- Seamless testimonial marquee — pixel-precise JS ----
+  // ---- Seamless testimonial marquee — bulletproof JS ----
   var track = document.getElementById('testi-track');
   if (track) {
-    var SET = 5;
-    var GAP = 16;
-    var SPEED = 50; // px/s
+    var SPEED = 50; // px per second
 
-    // measure one set width (items + gaps)
-    var oneSetW = 0;
-    for (var m = 0; m < SET; m++) {
-      oneSetW += track.children[m].offsetWidth;
-      if (m < SET - 1) oneSetW += GAP;
-    }
+    // clone track content 3x more (total 4 copies) for big buffer
+    var orig = track.innerHTML;
+    track.innerHTML = orig + orig + orig + orig;
 
-    // duplicate content 2x more (total 3 sets) for buffer
-    track.innerHTML = track.innerHTML + track.innerHTML;
+    // wait for layout, then measure one original set
+    setTimeout(function () {
+      var children = track.children;
+      var origCount = children.length / 4;
+      if (origCount < 1) return;
 
-    var pos = 0;
-    var paused = false;
-    var lastTime = null;
-    var wrap = track.parentElement;
-
-    var animate = function (ts) {
-      if (!lastTime) lastTime = ts;
-      var dt = (ts - lastTime) / 1000;
-      lastTime = ts;
-      if (!paused) {
-        pos -= SPEED * dt;
-        // when scrolled past one full set, snap back (invisible because content repeats)
-        if (pos <= -oneSetW) pos += oneSetW;
+      // measure width of first origCount items + gaps
+      var oneSetW = 0;
+      for (var m = 0; m < origCount; m++) {
+        oneSetW += children[m].offsetWidth;
+        if (m < origCount - 1) {
+          var s = getComputedStyle(children[m]);
+          oneSetW += parseFloat(s.marginRight) || 0;
+        }
       }
-      track.style.transform = 'translateX(' + pos + 'px)';
-      requestAnimationFrame(animate);
-    };
-    requestAnimationFrame(animate);
+      // add gap from parent
+      var trackStyle = getComputedStyle(track);
+      oneSetW += (origCount - 1) * parseFloat(trackStyle.gap || 16);
 
-    if (wrap) {
-      wrap.addEventListener('mouseenter', function () { paused = true; });
-      wrap.addEventListener('mouseleave', function () { paused = false; });
-      wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-      wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 500); });
-    }
+      if (oneSetW <= 0) return; // bail if measurement failed
+
+      var pos = 0;
+      var paused = false;
+      var lastTime = null;
+      var wrap = track.parentElement;
+
+      var animate = function (ts) {
+        if (lastTime === null) lastTime = ts;
+        var dt = (ts - lastTime) / 1000;
+        lastTime = ts;
+        if (!paused && dt < 0.5) { // skip big jumps (tab switch)
+          pos -= SPEED * dt;
+          if (pos <= -oneSetW) pos += oneSetW;
+        }
+        track.style.transform = 'translateX(' + pos + 'px)';
+        requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
+
+      if (wrap) {
+        wrap.addEventListener('mouseenter', function () { paused = true; });
+        wrap.addEventListener('mouseleave', function () { paused = false; });
+        wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+        wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 500); });
+      }
+    }, 200);
   }
 })();
