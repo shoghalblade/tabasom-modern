@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v8 (bulletproof marquee + bigger fonts)
+// Tabasom Clinic — interactions v8.1 (no marquee JS needed)
 (function () {
   'use strict';
 
@@ -68,78 +68,5 @@
   if (cards && prev && next) {
     prev.onclick = function () { cards.scrollBy({ left: 360, behavior: 'smooth' }); };
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
-  }
-
-  // ---- SEAMLESS TESTIMONIAL MARQUEE ----
-  var track = document.getElementById('testi-track');
-  if (track) {
-    // Step 1: save original content (one set)
-    var origHTML = track.innerHTML;
-
-    // Step 2: fill track with many copies
-    var COPIES = 8;
-    var fullHTML = '';
-    for (var c = 0; c < COPIES; c++) fullHTML += origHTML;
-    track.innerHTML = fullHTML;
-
-    // Step 3: measure after layout settles
-    var SPEED = 60; // px per second
-    var oneSetW = 0;
-    var pos = 0;
-    var paused = false;
-    var lastTS = null;
-    var ready = false;
-
-    function measureAndStart() {
-      // measure first set width using the original child count
-      var tmp = document.createElement('div');
-      tmp.style.cssText = 'position:absolute;visibility:hidden;display:flex;gap:16px;width:max-content;';
-      tmp.innerHTML = origHTML;
-      track.parentElement.appendChild(tmp);
-      oneSetW = tmp.offsetWidth;
-      tmp.remove();
-
-      if (oneSetW <= 0) {
-        // retry if layout not ready
-        setTimeout(measureAndStart, 100);
-        return;
-      }
-
-      ready = true;
-      lastTS = null;
-      requestAnimationFrame(tick);
-    }
-
-    function tick(ts) {
-      if (!ready) return;
-      if (lastTS === null) lastTS = ts;
-      var dt = (ts - lastTS) / 1000;
-      lastTS = ts;
-
-      if (!paused && dt < 0.5) {
-        pos -= SPEED * dt;
-        // seamless reset: when we've scrolled exactly one set, jump back
-        while (pos <= -oneSetW) pos += oneSetW;
-      }
-
-      track.style.transform = 'translate3d(' + pos + 'px,0,0)';
-      requestAnimationFrame(tick);
-    }
-
-    // start after DOM ready
-    if (document.readyState === 'complete') {
-      measureAndStart();
-    } else {
-      window.addEventListener('load', measureAndStart);
-    }
-
-    // pause controls
-    var wrap = track.parentElement;
-    if (wrap) {
-      wrap.addEventListener('mouseenter', function () { paused = true; });
-      wrap.addEventListener('mouseleave', function () { paused = false; });
-      wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-      wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 300); });
-    }
   }
 })();
