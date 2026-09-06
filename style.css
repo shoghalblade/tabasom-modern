@@ -185,7 +185,7 @@ body.menu-open{overflow:hidden;}
 .gallery-grid .g-item:first-child{grid-column:span 2;grid-row:span 2;}
 
 /* ===== TESTIMONIALS — marquee scroll with gold accents ===== */
-.testimonials{width:100%;max-width:1440px;margin:0 auto;padding:0 0 72px;}
+.testimonials{width:100%;max-width:1440px;margin:0 auto;padding:0 0 72px;overflow-x:hidden;}
 .testimonials-head{text-align:center;margin-bottom:36px;}
 .testimonials-head h2{font-weight:800;font-size:clamp(24px,3vw,36px);}
 .testimonials-head h2::after{content:'';display:block;width:40px;height:2px;background:var(--gold);margin:12px auto 0;}
@@ -247,7 +247,7 @@ footer{width:100%;max-width:1440px;padding:48px 0 0;border-top:1px solid var(--b
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   body{overflow-x:hidden;}
-  .page{padding:10px 16px;}
+  .page{padding:10px 16px;overflow-x:hidden;}
   .hero{grid-template-columns:1fr;min-height:auto;border-radius:0 0 20px 20px;}
   .hero-left{padding:40px 20px 28px;order:2;}
   .hero-title{font-size:clamp(28px,8vw,42px);}
