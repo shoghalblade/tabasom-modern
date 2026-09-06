@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v8.2
+// Tabasom Clinic — interactions v8.3
 (function () {
   'use strict';
 
@@ -70,45 +70,13 @@
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
   }
 
-  // ---- TESTIMONIALS — auto-rotate every 4 seconds ----
-  var wrap = document.querySelector('.testi-track-wrap');
+  // ---- Testimonials: pause CSS animation on hover/touch ----
   var track = document.getElementById('testi-track');
+  var wrap = track ? track.parentElement : null;
   if (wrap && track) {
-    var allCards = track.querySelectorAll('.testi-card');
-    var cardW = allCards[0] ? allCards[0].offsetWidth + 16 : 356; // card width + gap
-    var idx = 0;
-    var total = allCards.length;
-
-    function showCard(i) {
-      track.style.transform = 'translateX(' + (-i * cardW) + 'px)';
-    }
-
-    // auto-advance
-    var timer = setInterval(function () {
-      idx = (idx + 1) % total;
-      showCard(idx);
-    }, 4000);
-
-    // pause on hover/touch
-    wrap.addEventListener('mouseenter', function () { clearInterval(timer); });
-    wrap.addEventListener('mouseleave', function () {
-      timer = setInterval(function () { idx = (idx + 1) % total; showCard(idx); }, 4000);
-    });
-
-    // swipe support
-    var startX = 0, swiping = false;
-    wrap.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; swiping = true; }, { passive: true });
-    wrap.addEventListener('touchend', function (e) {
-      if (!swiping) return;
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) {
-        idx = dx > 0 ? Math.max(0, idx - 1) : Math.min(total - 1, idx + 1);
-        showCard(idx);
-      }
-      swiping = false;
-      // restart timer
-      clearInterval(timer);
-      timer = setInterval(function () { idx = (idx + 1) % total; showCard(idx); }, 4000);
-    });
+    wrap.addEventListener('mouseenter', function () { track.style.animationPlayState = 'paused'; });
+    wrap.addEventListener('mouseleave', function () { track.style.animationPlayState = 'running'; });
+    wrap.addEventListener('touchstart', function () { track.style.animationPlayState = 'paused'; }, { passive: true });
+    wrap.addEventListener('touchend', function () { setTimeout(function () { track.style.animationPlayState = 'running'; }, 500); });
   }
 })();
