@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v7
+// Tabasom Clinic — interactions v8 (bulletproof marquee + bigger fonts)
 (function () {
   'use strict';
 
@@ -70,60 +70,76 @@
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
   }
 
-  // ---- Seamless testimonial marquee — bulletproof JS ----
+  // ---- SEAMLESS TESTIMONIAL MARQUEE ----
   var track = document.getElementById('testi-track');
   if (track) {
-    var SPEED = 50; // px per second
+    // Step 1: save original content (one set)
+    var origHTML = track.innerHTML;
 
-    // clone track content 3x more (total 4 copies) for big buffer
-    var orig = track.innerHTML;
-    track.innerHTML = orig + orig + orig + orig;
+    // Step 2: fill track with many copies
+    var COPIES = 8;
+    var fullHTML = '';
+    for (var c = 0; c < COPIES; c++) fullHTML += origHTML;
+    track.innerHTML = fullHTML;
 
-    // wait for layout, then measure one original set
-    setTimeout(function () {
-      var children = track.children;
-      var origCount = children.length / 4;
-      if (origCount < 1) return;
+    // Step 3: measure after layout settles
+    var SPEED = 60; // px per second
+    var oneSetW = 0;
+    var pos = 0;
+    var paused = false;
+    var lastTS = null;
+    var ready = false;
 
-      // measure width of first origCount items + gaps
-      var oneSetW = 0;
-      for (var m = 0; m < origCount; m++) {
-        oneSetW += children[m].offsetWidth;
-        if (m < origCount - 1) {
-          var s = getComputedStyle(children[m]);
-          oneSetW += parseFloat(s.marginRight) || 0;
-        }
+    function measureAndStart() {
+      // measure first set width using the original child count
+      var tmp = document.createElement('div');
+      tmp.style.cssText = 'position:absolute;visibility:hidden;display:flex;gap:16px;width:max-content;';
+      tmp.innerHTML = origHTML;
+      track.parentElement.appendChild(tmp);
+      oneSetW = tmp.offsetWidth;
+      tmp.remove();
+
+      if (oneSetW <= 0) {
+        // retry if layout not ready
+        setTimeout(measureAndStart, 100);
+        return;
       }
-      // add gap from parent
-      var trackStyle = getComputedStyle(track);
-      oneSetW += (origCount - 1) * parseFloat(trackStyle.gap || 16);
 
-      if (oneSetW <= 0) return; // bail if measurement failed
+      ready = true;
+      lastTS = null;
+      requestAnimationFrame(tick);
+    }
 
-      var pos = 0;
-      var paused = false;
-      var lastTime = null;
-      var wrap = track.parentElement;
+    function tick(ts) {
+      if (!ready) return;
+      if (lastTS === null) lastTS = ts;
+      var dt = (ts - lastTS) / 1000;
+      lastTS = ts;
 
-      var animate = function (ts) {
-        if (lastTime === null) lastTime = ts;
-        var dt = (ts - lastTime) / 1000;
-        lastTime = ts;
-        if (!paused && dt < 0.5) { // skip big jumps (tab switch)
-          pos -= SPEED * dt;
-          if (pos <= -oneSetW) pos += oneSetW;
-        }
-        track.style.transform = 'translateX(' + pos + 'px)';
-        requestAnimationFrame(animate);
-      };
-      requestAnimationFrame(animate);
-
-      if (wrap) {
-        wrap.addEventListener('mouseenter', function () { paused = true; });
-        wrap.addEventListener('mouseleave', function () { paused = false; });
-        wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-        wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 500); });
+      if (!paused && dt < 0.5) {
+        pos -= SPEED * dt;
+        // seamless reset: when we've scrolled exactly one set, jump back
+        while (pos <= -oneSetW) pos += oneSetW;
       }
-    }, 200);
+
+      track.style.transform = 'translate3d(' + pos + 'px,0,0)';
+      requestAnimationFrame(tick);
+    }
+
+    // start after DOM ready
+    if (document.readyState === 'complete') {
+      measureAndStart();
+    } else {
+      window.addEventListener('load', measureAndStart);
+    }
+
+    // pause controls
+    var wrap = track.parentElement;
+    if (wrap) {
+      wrap.addEventListener('mouseenter', function () { paused = true; });
+      wrap.addEventListener('mouseleave', function () { paused = false; });
+      wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 300); });
+    }
   }
 })();
