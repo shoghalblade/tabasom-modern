@@ -184,6 +184,7 @@ body.menu-open{overflow:hidden;}
 .testimonials-head h2::after{content:'';display:block;width:40px;height:2px;background:var(--gold);margin:12px auto 0;}
 .testi-track-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);}
 .testi-track{display:flex;gap:16px;width:max-content;will-change:transform;}
+@keyframes scroll-testi{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .testi-track-wrap:hover .testi-track{animation-play-state:paused!important;}
 .testi-card{
   flex-shrink:0;width:340px;padding:30px 28px;
@@ -276,10 +277,10 @@ footer{width:100%;max-width:1440px;padding:48px 0 0;border-top:1px solid var(--b
   .stats{gap:28px;}
   .stat .num{font-size:44px;}
   .banners{flex-direction:column;}
-  .banner-discount{width:100%;height:80px;gap:12px;}
-  .banner-discount .off{font-size:28px;}
-  .banner-discount .label{font-size:16px;}
-  .banner-book{width:100%;height:80px;font-size:17px;}
+  .banner-discount{width:100%;height:96px;gap:14px;border-radius:12px;}
+  .banner-discount .off{font-size:32px;}
+  .banner-discount .label{font-size:18px;}
+  .banner-book{width:100%;height:96px;font-size:19px;border-radius:12px;}
   /* gallery — 2 columns on mobile */
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
   .gallery-grid .g-item:first-child,.gallery-grid .g-item.span-2{grid-column:span 2;}
