@@ -12,6 +12,39 @@
     onScroll();
   }
 
+  // ---- همبرگری موبایل (فیکس: بستن با کلیک بیرون/لینک + aria) ----
+  var toggle = document.querySelector('.nav-toggle');
+  var menu = document.querySelector('.nav-items');
+  if (toggle && menu) {
+    var closeMenu = function () {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = menu.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // کلیک روی لینک‌ها منو رو می‌بنده
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeMenu();
+    });
+    // کلیک بیرون منو
+    document.addEventListener('click', function (e) {
+      if (menu.classList.contains('open') && !menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+    });
+    // ESC
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+    // تغییر سایز به دسکتاپ = ریست
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900) closeMenu();
+    });
+  }
+
   // Scroll reveal
   var revs = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revs.length) {
