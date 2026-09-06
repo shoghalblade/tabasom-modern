@@ -88,7 +88,8 @@
     }
 
     // adjust speed: full set scroll in ~40s
-    var pxPerFrame = oneSetW / (40 * 60); // 40 seconds at 60fps
+    // scroll speed: one set every 20 seconds for seamless feel
+    var pxPerFrame = oneSetW / (20 * 60); // 20 seconds at 60fps
 
     var lastTime = null;
     var animate = function (ts) {

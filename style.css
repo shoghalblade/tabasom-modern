@@ -276,8 +276,10 @@ footer{width:100%;max-width:1440px;padding:48px 0 0;border-top:1px solid var(--b
   .stats{gap:28px;}
   .stat .num{font-size:44px;}
   .banners{flex-direction:column;}
-  .banner-discount{width:100%;height:56px;}
-  .banner-book{width:100%;height:56px;}
+  .banner-discount{width:100%;height:80px;gap:12px;}
+  .banner-discount .off{font-size:28px;}
+  .banner-discount .label{font-size:16px;}
+  .banner-book{width:100%;height:80px;font-size:17px;}
   /* gallery — 2 columns on mobile */
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
   .gallery-grid .g-item:first-child,.gallery-grid .g-item.span-2{grid-column:span 2;}
