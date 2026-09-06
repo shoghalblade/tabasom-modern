@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v4 (editorial)
+// Tabasom Clinic — interactions v5 (editorial + seamless marquee)
 (function () {
   'use strict';
 
@@ -10,11 +10,11 @@
       menu.classList.remove('open'); toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open');
     };
-    var open = function () {
+    var openMenu = function () {
       menu.classList.add('open'); toggle.classList.add('open');
       toggle.setAttribute('aria-expanded', 'true'); document.body.classList.add('menu-open');
     };
-    toggle.onclick = function (e) { if (e) e.preventDefault(); menu.classList.contains('open') ? close() : open(); };
+    toggle.onclick = function (e) { if (e) e.preventDefault(); menu.classList.contains('open') ? close() : openMenu(); };
     var links = menu.querySelectorAll('a');
     for (var i = 0; i < links.length; i++) links[i].onclick = close;
     document.addEventListener('touchstart', function (e) {
@@ -68,5 +68,49 @@
   if (cards && prev && next) {
     prev.onclick = function () { cards.scrollBy({ left: 360, behavior: 'smooth' }); };
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
+  }
+
+  // ---- Seamless testimonial marquee (JS-driven, pixel-precise) ----
+  var track = document.getElementById('testi-track');
+  if (track && track.children.length >= 5) {
+    var SET = 5; // original items per set
+    var GAP = 16;
+    var SPEED = 45; // px per second
+    var pos = 0;
+    var paused = false;
+    var wrap = track.parentElement;
+
+    // measure one set width
+    var oneSetW = 0;
+    for (var m = 0; m < SET; m++) {
+      oneSetW += track.children[m].offsetWidth;
+      if (m < SET - 1) oneSetW += GAP;
+    }
+
+    // adjust speed: full set scroll in ~40s
+    var pxPerFrame = oneSetW / (40 * 60); // 40 seconds at 60fps
+
+    var lastTime = null;
+    var animate = function (ts) {
+      if (!lastTime) lastTime = ts;
+      var dt = (ts - lastTime) / 1000;
+      lastTime = ts;
+      if (!paused) {
+        pos -= pxPerFrame * dt * 60;
+        // when we've scrolled one full set, jump back
+        if (Math.abs(pos) >= oneSetW) pos += oneSetW;
+      }
+      track.style.transform = 'translateX(' + pos + 'px)';
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+
+    // pause on hover/touch
+    if (wrap) {
+      wrap.addEventListener('mouseenter', function () { paused = true; });
+      wrap.addEventListener('mouseleave', function () { paused = false; });
+      wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 1000); });
+    }
   }
 })();
