@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v5.1 (editorial + seamless marquee)
+// Tabasom Clinic — interactions v6
 (function () {
   'use strict';
 
@@ -70,35 +70,47 @@
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
   }
 
-  // ---- Seamless testimonial marquee (CSS animation, pixel-precise) ----
+  // ---- Seamless testimonial marquee — pixel-precise JS ----
   var track = document.getElementById('testi-track');
   if (track) {
     var SET = 5;
     var GAP = 16;
-    var SPEED = 35; // px per second — smooth, not fast
+    var SPEED = 50; // px/s
 
-    // measure one set width
+    // measure one set width (items + gaps)
     var oneSetW = 0;
-    for (var m = 0; m < Math.min(SET, track.children.length); m++) {
+    for (var m = 0; m < SET; m++) {
       oneSetW += track.children[m].offsetWidth;
       if (m < SET - 1) oneSetW += GAP;
     }
 
-    // duplicate the track content for seamless loop
-    var html = track.innerHTML;
-    track.innerHTML = html + html;
+    // duplicate content 2x more (total 3 sets) for buffer
+    track.innerHTML = track.innerHTML + track.innerHTML;
 
-    // set CSS custom property for animation distance
-    var dur = oneSetW / SPEED;
-    track.style.animation = 'scroll-testi ' + dur + 's linear infinite';
-
-    // pause on hover
+    var pos = 0;
+    var paused = false;
+    var lastTime = null;
     var wrap = track.parentElement;
+
+    var animate = function (ts) {
+      if (!lastTime) lastTime = ts;
+      var dt = (ts - lastTime) / 1000;
+      lastTime = ts;
+      if (!paused) {
+        pos -= SPEED * dt;
+        // when scrolled past one full set, snap back (invisible because content repeats)
+        if (pos <= -oneSetW) pos += oneSetW;
+      }
+      track.style.transform = 'translateX(' + pos + 'px)';
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+
     if (wrap) {
-      wrap.addEventListener('mouseenter', function () { track.style.animationPlayState = 'paused'; });
-      wrap.addEventListener('mouseleave', function () { track.style.animationPlayState = 'running'; });
-      wrap.addEventListener('touchstart', function () { track.style.animationPlayState = 'paused'; }, { passive: true });
-      wrap.addEventListener('touchend', function () { setTimeout(function () { track.style.animationPlayState = 'running'; }, 800); });
+      wrap.addEventListener('mouseenter', function () { paused = true; });
+      wrap.addEventListener('mouseleave', function () { paused = false; });
+      wrap.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      wrap.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 500); });
     }
   }
 })();
