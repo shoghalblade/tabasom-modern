@@ -1,4 +1,4 @@
-// Tabasom Clinic — interactions v8.1 (no marquee JS needed)
+// Tabasom Clinic — interactions v8.2
 (function () {
   'use strict';
 
@@ -68,5 +68,47 @@
   if (cards && prev && next) {
     prev.onclick = function () { cards.scrollBy({ left: 360, behavior: 'smooth' }); };
     next.onclick = function () { cards.scrollBy({ left: -360, behavior: 'smooth' }); };
+  }
+
+  // ---- TESTIMONIALS — auto-rotate every 4 seconds ----
+  var wrap = document.querySelector('.testi-track-wrap');
+  var track = document.getElementById('testi-track');
+  if (wrap && track) {
+    var allCards = track.querySelectorAll('.testi-card');
+    var cardW = allCards[0] ? allCards[0].offsetWidth + 16 : 356; // card width + gap
+    var idx = 0;
+    var total = allCards.length;
+
+    function showCard(i) {
+      track.style.transform = 'translateX(' + (-i * cardW) + 'px)';
+    }
+
+    // auto-advance
+    var timer = setInterval(function () {
+      idx = (idx + 1) % total;
+      showCard(idx);
+    }, 4000);
+
+    // pause on hover/touch
+    wrap.addEventListener('mouseenter', function () { clearInterval(timer); });
+    wrap.addEventListener('mouseleave', function () {
+      timer = setInterval(function () { idx = (idx + 1) % total; showCard(idx); }, 4000);
+    });
+
+    // swipe support
+    var startX = 0, swiping = false;
+    wrap.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; swiping = true; }, { passive: true });
+    wrap.addEventListener('touchend', function (e) {
+      if (!swiping) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) {
+        idx = dx > 0 ? Math.max(0, idx - 1) : Math.min(total - 1, idx + 1);
+        showCard(idx);
+      }
+      swiping = false;
+      // restart timer
+      clearInterval(timer);
+      timer = setInterval(function () { idx = (idx + 1) % total; showCard(idx); }, 4000);
+    });
   }
 })();
