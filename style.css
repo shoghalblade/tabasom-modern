@@ -54,12 +54,12 @@ body.menu-open{overflow:hidden;}
 .nav-toggle.open span:nth-child(2){opacity:0;}
 .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--gold);}
 
-/* ===== HERO — giant typography editorial ===== */
+/* ===== HERO — split editorial, curved bottom ===== */
 .hero{
   position:relative;width:100%;max-width:1400px;
   display:grid;grid-template-columns:1fr 1fr;gap:0;
   min-height:80vh;margin-top:0;
-  background:var(--dark);
+  background:var(--dark);border-radius:0 0 32px 32px;overflow:hidden;
 }
 .hero-left{
   display:flex;flex-direction:column;justify-content:center;
@@ -201,13 +201,13 @@ body.menu-open{overflow:hidden;}
 .testi-info .name{font-weight:600;font-size:14px;}
 .testi-info .role{font-weight:300;font-size:12px;color:var(--ink4);}
 
-/* ===== MANAGER — minimal inline ===== */
-.manager-banner{width:100%;max-width:800px;margin:0 auto;padding:0 0 72px;display:flex;align-items:center;justify-content:center;gap:20px;}
-.manager-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);flex-shrink:0;}
-.manager-photo img{width:100%;height:100%;object-fit:cover;}
-.manager-text{text-align:right;}
-.manager-text .line1{font-weight:600;font-size:clamp(16px,2vw,22px);}
-.manager-text .line2{font-weight:300;font-size:clamp(14px,1.6vw,18px);color:var(--ink4);display:block;margin-top:4px;}
+/* ===== DOCTOR BANNER — real photo from dctabasom ===== */
+.doctor-banner{width:100%;max-width:800px;margin:0 auto;padding:0 0 72px;display:flex;align-items:center;justify-content:center;gap:24px;}
+.db-photo{width:100px;height:100px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);flex-shrink:0;}
+.db-photo img{width:100%;height:100%;object-fit:cover;}
+.db-text{text-align:right;}
+.db-text h3{font-weight:700;font-size:clamp(18px,2.2vw,24px);margin-bottom:4px;}
+.db-text p{font-weight:300;font-size:clamp(13px,1.4vw,16px);color:var(--ink4);}
 
 /* ===== CONTACT — editorial dark strip ===== */
 .contact-strip{width:100%;max-width:1100px;margin:0 auto;background:var(--dark);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:32px 40px;color:#fff;}
