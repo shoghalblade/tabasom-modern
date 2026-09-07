@@ -209,7 +209,7 @@ direction:rtl;}
 .testi-info .role{font-weight:300;font-size:13px;color:var(--ink4);}
 
 /* ===== DOCTOR BANNER — real photo from dctabasom ===== */
-.doctor-banner{width:100%;max-width:1100px;margin:0 auto;padding:0 0 72px;display:flex;align-items:center;justify-content:center;gap:24px;}
+.doctor-banner{width:100%;max-width:none;margin:0 auto;padding:0 0 72px;display:flex;align-items:center;justify-content:center;gap:24px;}
 .db-photo{width:100px;height:100px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);flex-shrink:0;}
 .db-photo img{width:100%;height:100%;object-fit:cover;}
 .db-text{text-align:right;}
@@ -414,7 +414,7 @@ footer{width:100%;max-width:none;padding:48px 0 0;border-top:1px solid var(--bg3
 .about-stats .stat{background:var(--dark,#1a1a1a);color:#fff;border-radius:16px;padding:32px 16px;text-align:center;}
 .about-stats .num{font-size:2.2rem;font-weight:900;color:var(--gold,#c5a55a);}
 .about-stats .label{margin-top:8px;font-size:14px;color:rgba(255,255,255,.7);}
-.about-values{max-width:1000px;margin:0 auto;padding:40px 24px;}
+.about-values{max-width:none;margin:0 auto;padding:40px 24px;}
 .about-values h2{text-align:center;margin-bottom:36px;}
 .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
 .value-card{background:#fff;border:1px solid rgba(197,165,90,.25);border-radius:16px;padding:28px 22px;}
