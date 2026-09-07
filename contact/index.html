@@ -55,10 +55,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
 .ct-submit{padding:14px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--dark);font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;transition:all .25s;}
 .ct-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(197,165,90,.3);}
 
-/* STAR RATING */
-.ct-stars{display:flex;gap:6px;direction:ltr;}
-.ct-stars span{font-size:28px;cursor:pointer;color:#ddd;transition:color .15s;user-select:none;}
-.ct-stars span.active{color:#f5a623;}
+
 
 /* SUCCESS MSG */
 .ct-success{display:none;text-align:center;padding:40px 20px;}
@@ -146,7 +143,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
     </div>
 
     <div class="ct-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.5!2d51.4!3d35.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDQyJzAwLjAiTiA1McKwMjQnMDAuMCJF!5e0!3m2!1sfa!2sir!4v1" allowfullscreen="" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.5!2d46.2029!3d35.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDQyJzAwLjAiTiA1McKwMjQnMDAuMCJF!5e0!3m2!1sfa!2sir!4v1" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
 
@@ -178,12 +175,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
             </select>
           </div>
         </div>
-        <div class="ct-field">
-          <label>امتیاز</label>
-          <div class="ct-stars" id="ct-stars">
-            <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
-          </div>
-        </div>
+        
         <div class="ct-field">
           <label>نظر شما</label>
           <textarea id="r-text" placeholder="تجربه‌تون رو بنویسید..." required></textarea>
@@ -236,13 +228,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
 </footer>
 
 <script>
-// Star rating
-var stars=document.querySelectorAll('#ct-stars span');
-var rating=0;
-stars.forEach(function(s){
-  s.addEventListener('click',function(){
-    rating=parseInt(this.dataset.v);
-    stars.forEach(function(x){x.classList.toggle('active',parseInt(x.dataset.v)<=rating);});
+
   });
 });
 
@@ -252,9 +238,9 @@ document.getElementById('review-form').addEventListener('submit',function(e){
   var name=document.getElementById('r-name').value;
   var service=document.getElementById('r-service').value;
   var text=document.getElementById('r-text').value;
-  if(!name||!text||!rating){alert('لطفاً نام، امتیاز و نظر را وارد کنید');return;}
+  if(!name||!text){alert('لطفاً نام و نظر را وارد کنید');return;}
   var reviews=JSON.parse(localStorage.getItem('tabasom-reviews')||'[]');
-  reviews.unshift({name:name,service:service,rating:rating,text:text,date:new Date().toLocaleDateString('fa-IR')});
+  reviews.unshift({name:name,service:service,text:text,date:new Date().toLocaleDateString('fa-IR')});
   localStorage.setItem('tabasom-reviews',JSON.stringify(reviews));
   document.getElementById('review-form').style.display='none';
   document.getElementById('ct-success').style.display='block';
@@ -267,9 +253,9 @@ function renderReviews(){
   var grid=document.getElementById('reviews-grid');
   if(!reviews.length){grid.innerHTML='<p style="color:var(--ink4);text-align:center;grid-column:1/-1;">هنوز نظری ثبت نشده</p>';return;}
   grid.innerHTML=reviews.slice(0,9).map(function(r){
-    var stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
+    var stars='';
     var initial=r.name.charAt(0);
-    return '<div class="ct-review"><div class="ct-review-head"><div class="ct-review-avatar">'+initial+'</div><div><div class="ct-review-name">'+r.name+'</div><div class="ct-review-date">'+r.date+(r.service?' · '+r.service:'')+'</div></div></div><div class="ct-review-stars">'+stars+'</div><p>'+r.text+'</p></div>';
+    return '<div class="ct-review"><div class="ct-review-head"><div class="ct-review-avatar">'+initial+'</div><div><div class="ct-review-name">'+r.name+'</div><div class="ct-review-date">'+r.date+(r.service?' · '+r.service:'')+'</div></div></div><p>'+r.text+'</p></div>';
   }).join('');
 }
 renderReviews();
