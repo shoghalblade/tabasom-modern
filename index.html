@@ -1,936 +1,348 @@
-<!doctype html>
-<html lang="fa" dir="rtl" data-theme="light">
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>دندانپزشکی تبسم — نسخه مدرن | خاکستری و طلایی</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" media="all">
-<style>
-/* ============================================================
-   دندانپزشکی تبسم — نسخه مدرن (پیش‌نمایش تک‌صفحه)
-   تم: خاکستری متالیک + طلایی لوکس
-   ============================================================ */
-
-/* 1) DESIGN TOKENS */
-:root{
-	--t-prime:#1c1917;        /* زغال عمیق */
-	--t-gold:#c9a227;         /* طلایی اصلی */
-	--t-gold-2:#e5c158;       /* طلایی روشن */
-	--t-gold-3:#a67c00;       /* طلایی تیره */
-	--t-stone-50:#fafaf9;
-	--t-stone-100:#f5f5f4;
-	--t-stone-200:#e7e5e4;
-	--t-stone-300:#d6d3d1;
-	--t-stone-400:#a8a29e;
-	--t-stone-500:#78716c;
-	--t-stone-600:#57534e;
-	--t-stone-700:#44403c;
-	--t-stone-800:#292524;
-	--t-stone-900:#1c1917;
-	--t-white:#ffffff;
-	--t-bg:#f5f5f4;
-	--t-surface:#ffffff;
-	--t-text:#292524;
-	--t-muted:#78716c;
-	--t-radius:22px;
-	--t-radius-sm:14px;
-	--shadow-sm:0 4px 16px rgba(28,25,23,.06);
-	--shadow-md:0 16px 44px rgba(28,25,23,.10);
-	--shadow-lg:0 30px 80px rgba(28,25,23,.18);
-	--shadow-gold:0 18px 50px rgba(201,162,39,.22);
-	--grad-gold:linear-gradient(135deg,#a67c00 0%,#c9a227 42%,#e5c158 72%,#c9a227 100%);
-	--grad-gold-soft:linear-gradient(135deg,rgba(201,162,39,.10),rgba(229,193,88,.05));
-	--maxw:1200px;
-}
-
-/* 2) RESET / BASE */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-	font-family:Vazirmatn,system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;
-	background:var(--t-bg);
-	color:var(--t-text);
-	line-height:1.9;
-	overflow-x:hidden;
-	font-size:16px;
-}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-ul{list-style:none}
-::selection{background:var(--t-gold);color:#fff}
-
-.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-/* ============================================================
-   3) HEADER — شیشه‌ای چسبان
-============================================================ */
-.site-header{
-	position:fixed;top:0;left:0;right:0;z-index:1000;
-	background:rgba(250,250,249,.82);
-	backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-	border-bottom:1px solid rgba(214,211,209,.55);
-	transition:box-shadow .35s,background .35s;
-}
-.site-header.is-scrolled{
-	background:rgba(250,250,249,.94);
-	box-shadow:0 10px 34px rgba(28,25,23,.08);
-}
-.header-inner{
-	display:flex;align-items:center;justify-content:space-between;
-	height:76px;gap:20px;
-}
-.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.brand-logo{
-	width:46px;height:46px;border-radius:13px;overflow:hidden;
-	border:1.5px solid rgba(201,162,39,.55);
-	background:var(--t-white);
-	display:flex;align-items:center;justify-content:center;
-	box-shadow:var(--shadow-sm);
-}
-.brand-logo img{width:100%;height:100%;object-fit:contain}
-.brand-name{font-weight:900;font-size:19px;color:var(--t-stone-900);letter-spacing:-.2px}
-.brand-name em{font-style:normal;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.brand-sub{font-size:11.5px;color:var(--t-stone-500);margin-top:-2px;font-weight:600;letter-spacing:.4px}
-
-.main-nav{display:flex;align-items:center;gap:30px}
-.main-nav a{
-	font-size:14.5px;font-weight:700;color:var(--t-stone-600);
-	position:relative;padding:6px 0;transition:color .25s;
-}
-.main-nav a::after{
-	content:"";position:absolute;bottom:0;right:0;width:0;height:2.5px;
-	background:var(--grad-gold);border-radius:4px;transition:width .3s;
-}
-.main-nav a:hover{color:var(--t-stone-900)}
-.main-nav a:hover::after{width:100%}
-
-.header-cta{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.btn{
-	display:inline-flex;align-items:center;justify-content:center;gap:9px;
-	font-weight:800;font-size:14.5px;border-radius:13px;
-	padding:12px 22px;transition:transform .25s,box-shadow .25s,background .25s;
-	cursor:pointer;border:none;font-family:inherit;line-height:1.4;
-}
-.btn-gold{
-	background:var(--grad-gold);color:#fff;
-	box-shadow:var(--shadow-gold);
-}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 24px 60px rgba(201,162,39,.32)}
-.btn-ghost{
-	background:transparent;color:var(--t-stone-700);
-	border:1.5px solid var(--t-stone-300);
-}
-.btn-ghost:hover{border-color:var(--t-gold);color:var(--t-gold-3);transform:translateY(-2px)}
-.btn-lg{padding:16px 30px;font-size:15.5px;border-radius:15px}
-.btn svg{width:17px;height:17px;fill:currentColor}
-
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;border-radius:10px}
-.nav-toggle span{display:block;width:24px;height:2.5px;background:var(--t-stone-800);margin:5px 0;border-radius:3px;transition:.3s}
-
-/* ============================================================
-   4) HERO — تمام‌صفحه، خاکستری متالیک + طلایی
-============================================================ */
-.hero{
-	position:relative;min-height:100vh;
-	display:flex;align-items:center;
-	overflow:hidden;
-	background:var(--t-stone-900);
-	padding:140px 0 90px;
-}
-.hero-bg{
-	position:absolute;inset:0;z-index:0;
-	background-size:cover;background-position:center;
-	opacity:.28;filter:saturate(.85);
-}
-.hero-bg::after{
-	content:"";position:absolute;inset:0;
-	background:
-		radial-gradient(1200px 600px at 85% 15%,rgba(201,162,39,.16),transparent 60%),
-		radial-gradient(900px 500px at 10% 85%,rgba(201,162,39,.10),transparent 55%),
-		linear-gradient(180deg,rgba(28,25,23,.88) 0%,rgba(28,25,23,.82) 55%,rgba(28,25,23,.94) 100%);
-}
-.hero .container{position:relative;z-index:2}
-.hero-grid{
-	display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;
-}
-.hero-badge{
-	display:inline-flex;align-items:center;gap:9px;
-	background:rgba(201,162,39,.12);
-	border:1px solid rgba(201,162,39,.45);
-	color:var(--t-gold-2);font-weight:700;font-size:13px;
-	padding:9px 18px;border-radius:100px;margin-bottom:26px;
-	backdrop-filter:blur(6px);
-}
-.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--t-gold-2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,193,88,.5)}50%{box-shadow:0 0 0 7px rgba(229,193,88,0)}}
-.hero h1{
-	font-size:clamp(34px,5vw,60px);
-	font-weight:900;line-height:1.35;color:#fff;
-	margin-bottom:22px;letter-spacing:-.5px;
-}
-.hero h1 .gold{
-	background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;
-	-webkit-text-fill-color:transparent;display:inline-block;
-}
-.hero-lead{
-	font-size:17.5px;color:#d6d3d1;max-width:560px;
-	margin-bottom:34px;line-height:2.05;
-}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:46px}
-.hero-stats{
-	display:flex;gap:44px;flex-wrap:wrap;
-	padding-top:30px;border-top:1px solid rgba(214,211,209,.16);
-}
-.stat .num{
-	font-size:31px;font-weight:900;color:#fff;
-	background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-	line-height:1.3;
-}
-.stat .lbl{font-size:13px;color:#a8a29e;font-weight:600;margin-top:3px}
-
-.hero-visual{position:relative;z-index:2}
-.hero-card{
-	background:rgba(250,250,249,.06);
-	border:1px solid rgba(214,211,209,.18);
-	border-radius:26px;padding:16px;
-	backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-	box-shadow:0 40px 90px rgba(0,0,0,.45);
-	transform:rotate(1.5deg);
-	animation:float 7s ease-in-out infinite;
-}
-.hero-card img{border-radius:18px;width:100%;height:auto}
-@keyframes float{0%,100%{transform:rotate(1.5deg) translateY(0)}50%{transform:rotate(1.5deg) translateY(-14px)}}
-.hero-chip{
-	position:absolute;bottom:34px;right:-18px;
-	background:var(--t-white);border-radius:16px;
-	padding:14px 20px;display:flex;align-items:center;gap:12px;
-	box-shadow:var(--shadow-lg);
-	border:1px solid rgba(201,162,39,.35);
-	animation:float 6s ease-in-out infinite .8s;
-}
-.hero-chip .ic{
-	width:40px;height:40px;border-radius:12px;flex-shrink:0;
-	background:var(--grad-gold);display:flex;align-items:center;justify-content:center;
-	color:#fff;font-weight:900;font-size:18px;
-}
-.hero-chip .txt{font-weight:800;font-size:13.5px;color:var(--t-stone-800)}
-.hero-chip .sub{font-size:11.5px;color:var(--t-stone-500);font-weight:600}
-
-/* ============================================================
-   5) SECTIONS — عمومی
-============================================================ */
-.section{padding:105px 0}
-.section--gray{background:var(--t-stone-100);border-top:1px solid var(--t-stone-200);border-bottom:1px solid var(--t-stone-200)}
-.section--dark{
-	background:var(--t-stone-900);color:#d6d3d1;
-	position:relative;overflow:hidden;
-}
-.section--dark::before{
-	content:"";position:absolute;inset:0;
-	background:radial-gradient(900px 400px at 90% 10%,rgba(201,162,39,.10),transparent 60%),
-	           radial-gradient(700px 400px at 5% 90%,rgba(201,162,39,.07),transparent 55%);
-}
-.section-head{max-width:680px;margin:0 auto 58px;text-align:center}
-.kicker{
-	display:inline-flex;align-items:center;gap:10px;
-	font-size:12.5px;font-weight:800;color:var(--t-gold-3);
-	letter-spacing:1.6px;text-transform:uppercase;margin-bottom:16px;
-}
-.kicker::before,.kicker::after{content:"";width:26px;height:1.5px;background:var(--grad-gold);border-radius:2px}
-.section-head h2{
-	font-size:clamp(26px,3.6vw,40px);font-weight:900;
-	color:var(--t-stone-900);line-height:1.5;margin-bottom:16px;
-}
-.section-head h2 .gold{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.section-head p{color:var(--t-stone-500);font-size:15.5px;line-height:2}
-.section--dark .section-head h2{color:#fff}
-.section--dark .section-head p{color:#a8a29e}
-.section--dark .kicker{color:var(--t-gold-2)}
-
-/* ============================================================
-   6) خدمات — کارت‌های متالیک
-============================================================ */
-.services-grid{
-	display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
-}
-.svc-card{
-	background:var(--t-surface);border-radius:var(--t-radius);
-	padding:36px 26px 32px;position:relative;
-	border:1px solid var(--t-stone-200);
-	box-shadow:var(--shadow-sm);
-	transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s;
-	overflow:hidden;
-}
-.svc-card::before{
-	content:"";position:absolute;top:0;right:0;left:0;height:4px;
-	background:var(--grad-gold);transform:scaleX(0);transform-origin:right;
-	transition:transform .4s;
-}
-.svc-card:hover{
-	transform:translateY(-10px);
-	box-shadow:var(--shadow-md);
-	border-color:rgba(201,162,39,.45);
-}
-.svc-card:hover::before{transform:scaleX(1)}
-.svc-ic{
-	width:64px;height:64px;border-radius:18px;margin-bottom:22px;
-	background:linear-gradient(145deg,var(--t-stone-100),var(--t-stone-200));
-	border:1px solid var(--t-stone-300);
-	display:flex;align-items:center;justify-content:center;
-	padding:14px;transition:.4s;
-}
-.svc-card:hover .svc-ic{
-	background:var(--grad-gold);border-color:transparent;
-	box-shadow:var(--shadow-gold);
-	transform:rotate(-6deg) scale(1.06);
-}
-.svc-ic img{width:100%;height:100%;object-fit:contain;filter:grayscale(.2)}
-.svc-card:hover .svc-ic img{filter:none}
-.svc-card h3{font-size:17.5px;font-weight:900;color:var(--t-stone-900);margin-bottom:10px}
-.svc-card p{font-size:13.8px;color:var(--t-stone-500);line-height:2}
-.svc-num{
-	position:absolute;top:18px;left:20px;
-	font-size:30px;font-weight:900;line-height:1;
-	color:var(--t-stone-200);transition:.4s;
-	font-family:Vazirmatn,sans-serif;
-}
-.svc-card:hover .svc-num{color:rgba(201,162,39,.28)}
-
-/* ============================================================
-   7) درباره — اسپلیت لوکس
-============================================================ */
-.about-grid{
-	display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
-}
-.about-media{position:relative}
-.about-img{
-	border-radius:26px;overflow:hidden;box-shadow:var(--shadow-lg);
-	border:1px solid var(--t-stone-200);
-}
-.about-img img{width:100%;height:520px;object-fit:cover}
-.about-frame{
-	position:absolute;top:-18px;right:-18px;width:130px;height:130px;
-	border:2.5px solid var(--t-gold);border-radius:24px;opacity:.55;z-index:-1;
-}
-.about-exp{
-	position:absolute;bottom:-24px;left:26px;
-	background:var(--grad-gold);color:#fff;border-radius:20px;
-	padding:18px 26px;box-shadow:var(--shadow-gold);
-	display:flex;align-items:center;gap:14px;
-}
-.about-exp .big{font-size:40px;font-weight:900;line-height:1}
-.about-exp .small{font-size:13px;font-weight:700;line-height:1.5}
-.about-body .kicker{margin-bottom:14px}
-.about-body h2{
-	font-size:clamp(24px,3.2vw,36px);font-weight:900;color:var(--t-stone-900);
-	line-height:1.55;margin-bottom:20px;
-}
-.about-body h2 .gold{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.about-body p{color:var(--t-stone-500);font-size:15.5px;margin-bottom:16px;line-height:2.1}
-.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0 34px}
-.feat{
-	display:flex;align-items:center;gap:11px;
-	background:var(--t-stone-100);border:1px solid var(--t-stone-200);
-	border-radius:14px;padding:13px 16px;font-weight:700;font-size:14px;color:var(--t-stone-700);
-	transition:.3s;
-}
-.feat:hover{border-color:rgba(201,162,39,.5);background:var(--grad-gold-soft)}
-.feat .ck{
-	width:26px;height:26px;border-radius:9px;background:var(--grad-gold);color:#fff;
-	display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
-	box-shadow:0 6px 14px rgba(201,162,39,.35);
-}
-
-/* ============================================================
-   8) لبخندهای ماندگار — گالری
-============================================================ */
-.smiles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
-.smile-card{
-	position:relative;border-radius:var(--t-radius);overflow:hidden;
-	box-shadow:var(--shadow-md);cursor:pointer;height:320px;
-	border:1px solid var(--t-stone-200);
-}
-.smile-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
-.smile-card:hover img{transform:scale(1.07)}
-.smile-overlay{
-	position:absolute;inset:0;
-	background:linear-gradient(180deg,transparent 30%,rgba(28,25,23,.88) 100%);
-	display:flex;align-items:flex-end;padding:26px;transition:.4s;
-}
-.smile-card:hover .smile-overlay{background:linear-gradient(180deg,rgba(201,162,39,.12) 0%,rgba(28,25,23,.93) 100%)}
-.smile-overlay .tag{
-	background:var(--grad-gold);color:#fff;font-size:11.5px;font-weight:800;
-	padding:5px 13px;border-radius:100px;display:inline-block;margin-bottom:10px;
-}
-.smile-overlay h3{color:#fff;font-size:17.5px;font-weight:900}
-
-/* ============================================================
-   9) نظرات — کارت‌های طلایی
-============================================================ */
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.rev-card{
-	background:var(--t-surface);border-radius:var(--t-radius);
-	padding:30px 26px;position:relative;
-	border:1px solid var(--t-stone-200);
-	box-shadow:var(--shadow-sm);
-	transition:transform .35s,box-shadow .35s;
-	display:flex;flex-direction:column;gap:14px;
-}
-.rev-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md)}
-.rev-card::before{
-	content:"\201D";position:absolute;top:14px;left:22px;
-	font-size:64px;line-height:1;color:rgba(201,162,39,.18);font-weight:900;
-}
-.rev-stars{color:var(--t-gold);font-size:17px;letter-spacing:3px}
-.rev-text{font-size:14.2px;color:var(--t-stone-600);line-height:2.1;flex:1}
-.rev-foot{display:flex;align-items:center;gap:12px;border-top:1px solid var(--t-stone-200);padding-top:16px}
-.rev-avatar{
-	width:44px;height:44px;border-radius:50%;flex-shrink:0;
-	background:var(--grad-gold);color:#fff;font-weight:900;font-size:17px;
-	display:flex;align-items:center;justify-content:center;
-	box-shadow:0 8px 18px rgba(201,162,39,.35);
-}
-.rev-name{font-weight:800;font-size:14px;color:var(--t-stone-800)}
-.rev-treat{font-size:11.5px;color:var(--t-stone-400);font-weight:600}
-
-/* نوار متحرک نظرات */
-.reviews-marquee{
-	margin-top:44px;overflow:hidden;position:relative;
-	border-radius:18px;
-	background:linear-gradient(90deg,#1c1917,#292524);
-	border:1px solid rgba(201,162,39,.3);
-	box-shadow:var(--shadow-md);
-	direction:ltr;
-}
-.reviews-marquee .mq-track{
-	display:flex;gap:16px;width:max-content;padding:16px;
-	animation:mqScroll 34s linear infinite;
-}
-.reviews-marquee:hover .mq-track{animation-play-state:paused}
-@keyframes mqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mq-card{
-	flex:0 0 auto;width:300px;background:rgba(255,255,255,.05);
-	border:1px solid rgba(214,211,209,.14);border-radius:14px;padding:14px 18px;
-	direction:rtl;
-}
-.mq-card .s{color:var(--t-gold-2);font-size:13px;letter-spacing:2px}
-.mq-card .t{color:#d6d3d1;font-size:12.8px;line-height:1.9;margin-top:5px}
-.mq-card .n{color:#a8a29e;font-size:11px;font-weight:700;margin-top:6px}
-
-/* ============================================================
-   10) نوار طلایی (CTA بین بخش‌ها)
-============================================================ */
-.gold-bar{
-	background:var(--grad-gold);color:#fff;
-	padding:26px 0;position:relative;overflow:hidden;
-}
-.gold-bar .container{
-	display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;
-}
-.gold-bar h3{font-size:21px;font-weight:900;line-height:1.7}
-.gold-bar p{font-size:14px;opacity:.95;font-weight:600}
-.gold-bar .btn{
-	background:#fff;color:var(--t-gold-3);
-	box-shadow:0 16px 40px rgba(0,0,0,.16);
-}
-.gold-bar .btn:hover{transform:translateY(-2px);box-shadow:0 22px 54px rgba(0,0,0,.24)}
-
-/* ============================================================
-   11) تماس / فوتر
-============================================================ */
-.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start}
-.contact-info h3{font-size:22px;font-weight:900;color:#fff;margin-bottom:18px}
-.contact-info > p{color:#a8a29e;font-size:14.5px;margin-bottom:30px;line-height:2}
-.c-item{
-	display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;
-	background:rgba(255,255,255,.05);border:1px solid rgba(214,211,209,.13);
-	border-radius:16px;padding:18px 20px;transition:.3s;
-}
-.c-item:hover{border-color:rgba(201,162,39,.5);transform:translateX(-4px)}
-.c-item .ic{
-	width:46px;height:46px;border-radius:13px;flex-shrink:0;
-	background:var(--grad-gold);display:flex;align-items:center;justify-content:center;
-	box-shadow:0 10px 22px rgba(201,162,39,.3);
-}
-.c-item .ic svg{width:21px;height:21px;fill:#fff}
-.c-item .lb{font-size:11.5px;color:var(--t-gold-2);font-weight:800;letter-spacing:.8px;margin-bottom:3px}
-.c-item .vl{font-size:16px;font-weight:800;color:#fff;line-height:1.8;direction:ltr;text-align:right}
-.c-item .vl.fa{direction:rtl}
-.contact-card{
-	background:var(--t-white);border-radius:26px;padding:38px 32px;
-	box-shadow:var(--shadow-lg);position:sticky;top:110px;
-	border:1px solid rgba(201,162,39,.3);
-}
-.contact-card h4{font-size:20px;font-weight:900;color:var(--t-stone-900);margin-bottom:8px}
-.contact-card > p{font-size:13.5px;color:var(--t-stone-500);margin-bottom:26px}
-.form-row{margin-bottom:16px}
-.form-row label{display:block;font-size:12.5px;font-weight:800;color:var(--t-stone-600);margin-bottom:7px}
-.form-row input,.form-row textarea{
-	width:100%;border:1.5px solid var(--t-stone-200);border-radius:13px;
-	padding:13px 16px;font-family:inherit;font-size:14px;background:var(--t-stone-50);
-	transition:.25s;color:var(--t-stone-800);outline:none;
-}
-.form-row input:focus,.form-row textarea:focus{
-	border-color:var(--t-gold);box-shadow:0 0 0 4px rgba(201,162,39,.14);background:#fff;
-}
-.form-row textarea{min-height:110px;resize:vertical}
-.form-note{font-size:11.5px;color:var(--t-stone-400);margin-top:12px;text-align:center;line-height:1.8}
-
-.site-footer{
-	background:#141211;color:#a8a29e;
-	padding:54px 0 28px;border-top:1px solid rgba(201,162,39,.22);
-}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;margin-bottom:40px}
-.footer-brand p{font-size:13.5px;line-height:2.1;margin-top:14px;max-width:340px}
-.footer-brand .brand-name{color:#fff}
-.footer-col h5{color:#fff;font-size:15px;font-weight:900;margin-bottom:18px;position:relative;padding-bottom:10px}
-.footer-col h5::after{content:"";position:absolute;bottom:0;right:0;width:34px;height:2.5px;background:var(--grad-gold);border-radius:3px}
-.footer-col a{display:block;font-size:13.5px;padding:5px 0;color:#a8a29e;transition:.25s}
-.footer-col a:hover{color:var(--t-gold-2);transform:translateX(-4px)}
-.footer-bottom{
-	border-top:1px solid rgba(214,211,209,.1);padding-top:22px;
-	display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
-	font-size:12.5px;
-}
-.footer-bottom .gold{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
-
-/* شناور تماس */
-.float-call{
-	position:fixed;bottom:26px;left:26px;z-index:900;
-	width:58px;height:58px;border-radius:50%;
-	background:var(--grad-gold);color:#fff;
-	display:flex;align-items:center;justify-content:center;
-	box-shadow:0 16px 40px rgba(201,162,39,.45);
-	transition:.3s;animation:float 4s ease-in-out infinite;
-}
-.float-call:hover{transform:scale(1.1)}
-.float-call svg{width:24px;height:24px;fill:#fff}
-
-/* ============================================================
-   12) انیمیشن‌های اسکرول
-============================================================ */
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal.in{opacity:1;transform:none}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
-
-/* ============================================================
-   13) ریسپانسیو
-============================================================ */
-@media(max-width:1024px){
-	.services-grid{grid-template-columns:repeat(2,1fr)}
-	.reviews-grid{grid-template-columns:repeat(2,1fr)}
-	.hero-grid{grid-template-columns:1fr;gap:44px}
-	.hero{padding-top:120px}
-	.hero-visual{max-width:540px;margin:0 auto}
-	.about-grid,.contact-grid{grid-template-columns:1fr;gap:48px}
-	.about-img img{height:420px}
-	.footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-	.main-nav{
-		position:fixed;top:0;left:0;right:0;bottom:0;z-index:990;
-		background:rgba(250,250,249,.98);backdrop-filter:blur(20px);
-		flex-direction:column;justify-content:center;gap:26px;
-		transform:translateY(-100%);transition:transform .38s cubic-bezier(.16,1,.3,1);
-	}
-	.main-nav.open{transform:translateY(0)}
-	.main-nav a{font-size:20px;font-weight:800;color:var(--t-stone-800)}
-	.nav-toggle{display:block;z-index:1001;position:relative}
-	.nav-toggle.open span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
-	.nav-toggle.open span:nth-child(2){opacity:0}
-	.nav-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
-	.header-cta .btn-ghost{display:none}
-	.hero-stats{gap:26px}
-	.services-grid{grid-template-columns:1fr}
-	.reviews-grid{grid-template-columns:1fr}
-	.smiles-grid{grid-template-columns:1fr}
-	.about-feats{grid-template-columns:1fr}
-	.contact-card{position:static}
-	.section{padding:80px 0}
-	.hero-chip{right:8px}
-}
-</style>
+<title>Tabasom</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style-v14.css">
 </head>
 <body>
+<main class="page">
 
-<!-- ============ HEADER ============ -->
-<header class="site-header" id="siteHeader">
-	<div class="container header-inner">
-		<a class="brand" href="#top">
-			<span class="brand-logo"><img src="https://dctabasom.com/wp-content/uploads/2025/01/logo-tabasom-copy-1024x724.png" alt="دندانپزشکی تبسم"></span>
-			<span>
-				<span class="brand-name">دندانپزشکی <em>تبسم</em></span>
-				<div class="brand-sub">کلینیک تخصصی – غرب تهران</div>
-			</span>
-		</a>
-		<nav class="main-nav" id="mainNav">
-			<a href="#services">خدمات</a>
-			<a href="#about">درباره ما</a>
-			<a href="#smiles">نمونه‌کارها</a>
-			<a href="#reviews">نظرات</a>
-			<a href="#contact">تماس</a>
-		</nav>
-		<div class="header-cta">
-			<a class="btn btn-ghost" href="tel:02144120380" dir="ltr">۰۲۱-۴۴۱۲۰۳۸۰</a>
-			<a class="btn btn-gold" href="#contact">رزرو نوبت</a>
-			<button class="nav-toggle" id="navToggle" aria-label="منو"><span></span><span></span><span></span></button>
-		</div>
-	</div>
-</header>
+  <!-- NAV -->
+  <nav class="site-nav" id="topnav">
+    <div class="nav-logo">
+      <a href="">
+        <img src="logo.png" alt="کلینیک دندانپزشکی تبسم">
+      </a>
+      <span class="nav-logo-text">دندانپزشکی تبسم<small>دندانپزشکی تخصصی شهر زیبا</small></span>
+    </div>
+    <div class="nav-items"><a href="">خانه</a><a href="#services">خدمات</a><a href="#gallery">نمونه کارها</a><a href="articles/">مقالات</a>
+        <a href="about/">درباره ما</a><a href="#contact">تماس با ما</a></div>    <a class="nav-cta" href="tel:02144120380">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+      رزرو نوبت
+    </a>
+    <button class="nav-toggle" aria-label="منو" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="top">
-	<div class="hero-bg" style="background-image:url('https://dctabasom.com/wp-content/uploads/2025/01/Screenshot-2025-02-04-at-2.08.55%E2%80%AFPM-e1738665809556-1024x525.jpg')"></div>
-	<div class="container">
-		<div class="hero-grid">
-			<div class="hero-copy">
-				<div class="hero-badge"><span class="dot"></span> بیش از ۱۰ سال تجربه درخشان</div>
-				<h1>لبخندی که <span class="gold">می‌ماند</span>، با تبسم</h1>
-				<p class="hero-lead">کلینیک دندانپزشکی تبسم در غرب تهران؛ ایمپلنت فوری، ارتودنسی، عصب‌کشی بدون درد و زیبایی دندان — با تیمی از متخصصان باتجربه و شرایط پرداخت قسطی.</p>
-				<div class="hero-actions">
-					<a class="btn btn-gold btn-lg" href="#contact">رزرو نوبت آنلاین</a>
-					<a class="btn btn-ghost btn-lg" href="tel:09023099601" style="color:#fff;border-color:rgba(214,211,209,.4)">تماس فوری</a>
-				</div>
-				<div class="hero-stats">
-					<div class="stat"><div class="num" data-count="10">۱۰</div><div class="lbl">سال تجربه</div></div>
-					<div class="stat"><div class="num" data-count="2500">۲,۵۰۰</div><div class="lbl">لبخند ماندگار</div></div>
-					<div class="stat"><div class="num" data-count="98">۹۸٪</div><div class="lbl">رضایت بیماران</div></div>
-				</div>
-			</div>
-			<div class="hero-visual">
-				<div class="hero-card">
-					<img src="https://dctabasom.com/wp-content/uploads/2025/09/تبسم.webp" alt="کلینیک دندانپزشکی تبسم">
-				</div>
-				<div class="hero-chip">
-					<span class="ic">✦</span>
-					<span>
-						<span class="txt">ایمپلنت فوری</span>
-						<div class="sub">در یک جلسه</div>
-					</span>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- HERO — split editorial -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="hero-tag">تجربه و تخصص از سال ۱۳۹۴</p>
+      <h1 class="hero-title">لبخند سالم<br>با <span class="gold">تبسم</span></h1>
+      <p class="hero-desc">بیش از ۱۰ سال تجربه در ارائهٔ خدمات تخصصی دندانپزشکی — از ایمپلنت فوری تا زیبایی لبخند، در محیطی آرام و حرفه‌ای.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="tel:02144120380">نوبت‌دهی آنلاین</a>
+        <a class="btn-ghost" href="#gallery">نمونه کارها</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="assets/hero-v5.jpg" alt="کلینیک دندانپزشکی تبسم">
+      <div class="hero-mascot-wrap">
+        <img src="assets/mascot.png" alt="">
+      </div>
+    </div>
+    <div class="hero-follow">
+      <div class="follow-pill">
+        <span class="label">Dent_tabasom</span>
+        <div class="social-row">
+          <a class="icon-badge" href="https://instagram.com/Dent_tabasom" aria-label="اینستاگرام">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
+          </a>
+          <a class="icon-badge" href="https://wa.me/989023099601" aria-label="واتساپ">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.2-3.5-.7-2.9-1.2-4.8-4.2-4.9-4.4-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+          </a>
+          <a class="icon-badge" href="tel:02144120380" aria-label="تماس">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ============ SERVICES ============ -->
-<section class="section" id="services">
-	<div class="container">
-		<div class="section-head reveal">
-			<span class="kicker">خدمات تخصصی</span>
-			<h2>همه‌چیز برای <span class="gold">سلامت لبخند</span> شما</h2>
-			<p>از درمان‌های روزمره تا تخصصی‌ترین خدمات دندانپزشکی، با مدرن‌ترین تجهیزات و بدون درد.</p>
-		</div>
-		<div class="services-grid">
-			<div class="svc-card reveal">
-				<span class="svc-num">۰۱</span>
-				<div class="svc-ic"><img src="https://dctabasom.com/wp-content/uploads/2025/01/implant.png" alt="ایمپلنت"></div>
-				<h3>ایمپلنت دندان</h3>
-				<p>راه‌حلی دائمی و مؤثر برای جایگزینی دندان‌های از دست‌رفته؛ با پروتکل‌های پیشرفته و بی‌حسی کامل.</p>
-			</div>
-			<div class="svc-card reveal reveal-delay-1">
-				<span class="svc-num">۰۲</span>
-				<div class="svc-ic"><img src="https://dctabasom.com/wp-content/uploads/2025/01/tooth-brush.png" alt="دندانپزشکی کودکان"></div>
-				<h3>دندانپزشکی کودکان</h3>
-				<p>فضایی امن و دوستانه با تعامل نرم با پزشک؛ تا کوچولوها بدون ترس لبخند بزنند.</p>
-			</div>
-			<div class="svc-card reveal reveal-delay-2">
-				<span class="svc-num">۰۳</span>
-				<div class="svc-ic"><img src="https://dctabasom.com/wp-content/uploads/2025/01/reconstruction.png" alt="پیوند استخوان"></div>
-				<h3>پیوند استخوان</h3>
-				<p>روشی تخصصی برای افزایش حجم و استحکام استخوان فک؛ پایه‌ای مطمئن برای ایمپلنت.</p>
-			</div>
-			<div class="svc-card reveal reveal-delay-3">
-				<span class="svc-num">۰۴</span>
-				<div class="svc-ic"><img src="https://dctabasom.com/wp-content/uploads/2025/01/dental.png" alt="عکس‌برداری دیجیتال"></div>
-				<h3>عکس‌برداری دیجیتال</h3>
-				<p>ثبت دقیق تصاویر دندان و دهان با فناوری دیجیتال؛ تشخیص سریع‌تر با تابش کمتر.</p>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- SERVICES — numbered editorial -->
+  <section class="services" id="services">
+    <div class="sec-header reveal">
+      <div class="left">
+        <h2>خدمات ما</h2>
+        <div class="line"></div>
+      </div>
+      <div class="right">از ایمپلنت فوری تا دندانپزشکی بدون درد — با پیشرفته‌ترین تجهیزات روز</div>
+    </div>
+    <div class="svc-list">
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap"><img class="svc-ico" src="assets/icon-implant.png" alt="ایمپلنت"></div>
+        <div class="svc-num">01</div>
+        <div class="svc-body">
+          <h3>ایمپلنت فوری</h3>
+          <p>کاشت ایمپلنت بدون پیش‌پرداخت با برندهای معتبر؛ تک‌دندان و کل فک بالا و پایین، با امکان پرداخت اقساطی.</p>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap"><img class="svc-ico" src="assets/icon-dental.png" alt="بدون درد"></div>
+        <div class="svc-num">02</div>
+        <div class="svc-body">
+          <h3>دندانپزشکی بدون درد</h3>
+          <p>عصب‌کشی تک‌جلسه‌ای با دستگاه بی‌حسی دیجیتال — تجربه‌ای آرام و بدون استرس.</p>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap"><img class="svc-ico" src="assets/icon-reconstruction.png" alt="زیبایی"></div>
+        <div class="svc-num">03</div>
+        <div class="svc-body">
+          <h3>زیبایی و ترمیم</h3>
+          <p>لمینت بدون تراش، کامپوزیت، بلیچینگ و روکش — لبخندی طبیعی و متناسب با چهرهٔ شما.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ============ ABOUT ============ -->
-<section class="section section--gray" id="about">
-	<div class="container">
-		<div class="about-grid">
-			<div class="about-media reveal">
-				<div class="about-frame"></div>
-				<div class="about-img">
-					<img src="https://dctabasom.com/wp-content/uploads/2025/09/تبسم.webp" alt="درباره دندانپزشکی تبسم">
-				</div>
-				<div class="about-exp">
-					<div class="big">+۱۰</div>
-					<div class="small">سال تجربه<br>درخشان</div>
-				</div>
-			</div>
-			<div class="about-body reveal reveal-delay-1">
-				<span class="kicker">درباره ما</span>
-				<h2>مرجع <span class="gold">خدمات تخصصی</span> دندانپزشکی در غرب تهران</h2>
-				<p>دندانپزشکی تبسم در شهر زیبا با بیش از ۱۰ سال تجربه، مرجع خدمات تخصصی و عمومی دندانپزشکی است.</p>
-				<p>هدف ما تجربه‌ای آرام، بدون درد و باکیفیت از مراجعه به دندانپزشکی است؛ با تیمی از متخصصان باتجربه و امکان پرداخت قسطی.</p>
-				<div class="about-feats">
-					<div class="feat"><span class="ck">✓</span> درمان بدون درد</div>
-					<div class="feat"><span class="ck">✓</span> پرداخت قسطی</div>
-					<div class="feat"><span class="ck">✓</span> تجهیزات مدرن</div>
-					<div class="feat"><span class="ck">✓</span> کادر متخصص</div>
-				</div>
-				<a class="btn btn-gold" href="#contact">همین حالا وقت بگیرید</a>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- TRUST -->
+  <section class="trust reveal">
+    <div class="trust-img">
+      <img src="assets/trust-tooth.jpg" alt="کلینیک تبسم">
+    </div>
+    <div class="trust-content">
+      <div class="trust-row">
+        <h3>اعتماد شما</h3>
+        <p>بیش از یک دهه تجربه در کنار تجهیزات پیشرفتهٔ دیجیتال، محیطی ایمن و آرام فراهم کرده است.</p>
+      </div>
+      <div class="trust-row">
+        <h3>لبخند ماست</h3>
+        <p>تعهد ما، درمان دقیق و اخلاق حرفه‌ای است؛ سلامت دهان نباید به‌خاطر هزینه معطل بماند.</p>
+      </div>
+    </div>
+  </section>
+  <div class="banners reveal">
+    <div class="banner-discount">
+      <span class="off">رایگان</span>
+      <span class="label">معاینهٔ اولین ویزیت</span>
+    </div>
+    <a class="banner-book" href="tel:02144120380">رزرو همین الان</a>
+  </div>
 
-<!-- ============ GOLD BAR ============ -->
-<div class="gold-bar">
-	<div class="container">
-		<div>
-			<h3>✨ مشاوره رایگان + طرح درمان شفاف</h3>
-			<p>همین امروز با ما تماس بگیرید؛ پاسخگوی شما در تمام ساعات کاری هستیم.</p>
-		</div>
-		<a class="btn" href="tel:02144120380" dir="ltr">📞 ۰۲۱-۴۴۱۲۰۳۸۰</a>
-	</div>
-</div>
+  <!-- ABOUT -->
+  <section class="about reveal" id="about-us-anchor">
+    <div class="about-deco" aria-hidden="true">"</div>
+    <div class="about-text">
+      <h3>دربارهٔ <span class="gold">تبسم</span></h3>
+      <p>دندانپزشکی تبسم در غرب تهران با بیش از ۱۰ سال تجربه، مرجع خدمات تخصصی و عمومی است. هدف ما تجربه‌ای آرام، بدون درد و باکیفیت است.</p>
+      <p>با آموزش مستمر، به‌روزرسانی دانش تخصصی و توجه به جزئیات، محیطی حرفه‌ای فراهم کرده‌ایم تا لبخندی سالم و ماندگار برای شما رقم بزنیم.</p>
+    </div>
+    <a class="about-btn" href="#contact">ارتباط با ما</a>
+  </section>
 
-<!-- ============ SMILES (نمونه‌کار) ============ -->
-<section class="section" id="smiles">
-	<div class="container">
-		<div class="section-head reveal">
-			<span class="kicker">نمونه‌کارها</span>
-			<h2>لبخندهایی که <span class="gold">ماندگار شدند</span></h2>
-			<p>داستان‌های واقعی بیمارانی که با تبسم، لبخند تازه‌ای را تجربه کردند.</p>
-		</div>
-		<div class="smiles-grid">
-			<div class="smile-card reveal">
-				<img src="https://dctabasom.com/wp-content/uploads/2025/09/تبسم.webp" alt="ایمپلنت فوری">
-				<div class="smile-overlay">
-					<div><span class="tag">ایمپلنت فوری</span><h3>بازسازی کامل لبخند در یک جلسه</h3></div>
-				</div>
-			</div>
-			<div class="smile-card reveal reveal-delay-1">
-				<img src="https://dctabasom.com/wp-content/uploads/2025/01/Screenshot-2025-02-04-at-2.08.55%E2%80%AFPM-e1738665809556-1024x525.jpg" alt="زیبایی دندان">
-				<div class="smile-overlay">
-					<div><span class="tag">لمینت سرامیکی</span><h3>هماهنگی کامل رنگ و فرم دندان‌ها</h3></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat reveal"><div class="num" data-target="10" data-decimals="0" data-suffix="+"><span class="gold">0</span>+</div><div class="lbl">سال تجربه</div></div>
+    <div class="stat reveal"><div class="num" data-target="12" data-decimals="0" data-suffix="">0</div><div class="lbl">خدمات تخصصی</div></div>
+    <div class="stat reveal"><div class="num" data-target="4.8" data-decimals="1" data-suffix="">0.0</div><div class="lbl">رضایت بیماران</div></div>
+  </section>
 
-<!-- ============ REVIEWS ============ -->
-<section class="section section--gray" id="reviews">
-	<div class="container">
-		<div class="section-head reveal">
-			<span class="kicker">نظرات بیماران</span>
-			<h2>اعتماد شما، <span class="gold">سرمایه ما</span></h2>
-			<p>تجربه‌ی واقعی کسانی که لبخندشان را به تبسم سپردند.</p>
-		</div>
-		<div class="reviews-grid">
-			<div class="rev-card reveal">
-				<div class="rev-stars">★★★★★</div>
-				<p class="rev-text">کاشت ایمپلنت فوری انجام دادم، بدون درد و خیلی تمیز. کادر درمانی خیلی با‌حوصله بودن.</p>
-				<div class="rev-foot">
-					<span class="rev-avatar">س</span>
-					<div><div class="rev-name">سارا م.</div><div class="rev-treat">ایمپلنت فوری</div></div>
-				</div>
-			</div>
-			<div class="rev-card reveal reveal-delay-1">
-				<div class="rev-stars">★★★★★</div>
-				<p class="rev-text">عصب‌کشی تک‌جلسه‌ای انجام دادم، اصلاً درد نداشت. قیمت هم نسبت به بقیه منصفانه‌تر بود.</p>
-				<div class="rev-foot">
-					<span class="rev-avatar">ر</span>
-					<div><div class="rev-name">رضا ک.</div><div class="rev-treat">عصب‌کشی</div></div>
-				</div>
-			</div>
-			<div class="rev-card reveal reveal-delay-2">
-				<div class="rev-stars">★★★★★</div>
-				<p class="rev-text">لمینت سرامیکی گذاشتم، لبخندم عالی شد. همه مراحل با دقت توضیح داده شد.</p>
-				<div class="rev-foot">
-					<span class="rev-avatar">م</span>
-					<div><div class="rev-name">مریم ب.</div><div class="rev-treat">لمینت سرامیکی</div></div>
-				</div>
-			</div>
-			<div class="rev-card reveal">
-				<div class="rev-stars">★★★★☆</div>
-				<p class="rev-text">جرم‌گیری و بروساژ انجام دادم، لثه‌هام خیلی بهتر شد. محیط کلینیک تمیز و آروم بود.</p>
-				<div class="rev-foot">
-					<span class="rev-avatar">ع</span>
-					<div><div class="rev-name">علی ر.</div><div class="rev-treat">جرم‌گیری و بروساژ</div></div>
-				</div>
-			</div>
-			<div class="rev-card reveal reveal-delay-1">
-				<div class="rev-stars">★★★★★</div>
-				<p class="rev-text">دندانپزشکی کودکم رو اینجا بردم، بچه‌ام اصلاً نترسید. دکترا با بچه خیلی مهربونن.</p>
-				<div class="rev-foot">
-					<span class="rev-avatar">ن</span>
-					<div><div class="rev-name">نرگس ح.</div><div class="rev-treat">دندانپزشکی کودکان</div></div>
-				</div>
-			</div>
-			<div class="rev-card reveal reveal-delay-2">
-				<div class="rev-stars">★★★★★</div>
-				<p class="rev-text">ارتودنسی رو اینجا شروع کردم، خیالم کاملاً راحته. پیگیری‌های منظم و تیم حرفه‌ای.</p>
-				<div class="rev-foot">
-					<span class="rev-avatar">ز</span>
-					<div><div class="rev-name">زهرا ت.</div><div class="rev-treat">ارتودنسی</div></div>
-				</div>
-			</div>
-		</div>
+  <!-- BLOG -->
+    <section class="blog" id="blog">
+    <div class="sec-header reveal">
+      <div class="left">
+        <h2>آخرین مقالات</h2>
+        <div class="line"></div>
+      </div>
+      <div class="right">آموزش‌های کاربردی سلامت دهان و دندان</div>
+    </div>
+    <div class="blog-cards reveal" id="blog-cards">
+            <a class="blog-card" href="articles/post-28/">
+        <span class="tag">2026/09/06</span>
+        <h3>بررسی روش ‌های کاهش هزینه دندانپزشکی در تهران</h3>
+        <p>روش ‌های کاهش هزینه دندانپزشکی در تهران دندانپزشکی در تهران یکی از مهم‌ ترین نیاز های روزمره بسیاری از افراد است. تهران، به‌ عنوان…</p>
+        <span class="blog-more">ادامه مطلب ←</span>
+      </a>
+            <a class="blog-card" href="articles/post-27/">
+        <span class="tag">2026/09/06</span>
+        <h3>چگونه کلینیک مناسب برای دندانپزشکی اقساطی انتخاب کنیم؟</h3>
+        <p>معرفی بهترین کلینیک مناسب برای دندانپزشکی اقساطی  انتخاب یک کلینیک مناسب برای دندانپزشکی اقساطی می ‌تواند برای بسیاری از افراد یک چالش بزرگ باشد،…</p>
+        <span class="blog-more">ادامه مطلب ←</span>
+      </a>
+            <a class="blog-card" href="articles/post-26/">
+        <span class="tag">2026/09/06</span>
+        <h3>دندان مصنوعی یا ایمپلنت؟ انتخاب هوشمندانه با توجه به بودجه</h3>
+        <p>دندان مصنوعی یا ایمپلنت؟ دندان‌ ها به عنوان یکی از ارکان اصلی زیبایی و عملکرد دهان در بدن انسان شناخته می ‌شوند. از دست…</p>
+        <span class="blog-more">ادامه مطلب ←</span>
+      </a>
+          </div>
+    <a class="blog-all" href="articles/">مشاهدهٔ همهٔ مقالات</a>
+  </section>
+  
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="sec-header reveal">
+      <div class="left">
+        <h2>نمونه کارها</h2>
+        <div class="line"></div>
+      </div>
+      <div class="right">نتیجهٔ درمان‌هایی که با دقت و تخصص انجام شده‌اند.</div>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item span-2 tall"><img src="assets/gallery-1.jpg" alt="نمونه کار 1"></div><div class="g-item"><img src="assets/gallery-2.jpg" alt="نمونه کار 2"></div><div class="g-item"><img src="assets/gallery-3.jpg" alt="نمونه کار 3"></div><div class="g-item span-2"><img src="assets/gallery-4.jpg" alt="نمونه کار 4"></div><div class="g-item"><img src="assets/gallery-5.jpg" alt="نمونه کار 5"></div><div class="g-item"><img src="assets/gallery-6.jpg" alt="نمونه کار 6"></div></div>
+  </section>
 
-		<!-- نوار متحرک -->
-		<div class="reviews-marquee reveal">
-			<div class="mq-track">
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">کاشت ایمپلنت فوری انجام دادم، بدون درد و خیلی تمیز. کادر درمانی خیلی با‌حوصله بودن.</div><div class="n">— سارا م.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">عصب‌کشی تک‌جلسه‌ای انجام دادم، اصلاً درد نداشت. قیمت منصفانه.</div><div class="n">— رضا ک.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">لمینت سرامیکی گذاشتم، لبخندم عالی شد. همه مراحل با دقت توضیح داده شد.</div><div class="n">— مریم ب.</div></div>
-				<div class="mq-card"><div class="s">★★★★☆</div><div class="t">جرم‌گیری و بروساژ انجام دادم، لثه‌هام خیلی بهتر شد. محیط تمیز و آروم.</div><div class="n">— علی ر.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">دندانپزشکی کودکم رو اینجا بردم، بچه‌ام اصلاً نترسید. دکترا مهربونن.</div><div class="n">— نرگس ح.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">ارتودنسی رو اینجا شروع کردم، خیالم کاملاً راحته. تیم فوق‌العاده حرفه‌ای.</div><div class="n">— زهرا ت.</div></div>
-				<!-- duplicate for seamless loop -->
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">کاشت ایمپلنت فوری انجام دادم، بدون درد و خیلی تمیز. کادر درمانی خیلی با‌حوصله بودن.</div><div class="n">— سارا م.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">عصب‌کشی تک‌جلسه‌ای انجام دادم، اصلاً درد نداشت. قیمت منصفانه.</div><div class="n">— رضا ک.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">لمینت سرامیکی گذاشتم، لبخندم عالی شد. همه مراحل با دقت توضیح داده شد.</div><div class="n">— مریم ب.</div></div>
-				<div class="mq-card"><div class="s">★★★★☆</div><div class="t">جرم‌گیری و بروساژ انجام دادم، لثه‌هام خیلی بهتر شد. محیط تمیز و آروم.</div><div class="n">— علی ر.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">دندانپزشکی کودکم رو اینجا بردم، بچه‌ام اصلاً نترسید. دکترا مهربونن.</div><div class="n">— نرگس ح.</div></div>
-				<div class="mq-card"><div class="s">★★★★★</div><div class="t">ارتودنسی رو اینجا شروع کردم، خیالم کاملاً راحته. تیم فوق‌العاده حرفه‌ای.</div><div class="n">— زهرا ت.</div></div>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- TESTIMONIALS (لوپ بی‌نهایت) -->
+  <section class="testimonials">
+    <div class="testimonials-head reveal"><h2>نظرات بیماران</h2></div>
+    <div class="testi-track-wrap">
+      <div class="testi-track" id="testi-track">
+      <div class="testi-card">
+        <div class="quote">ایمپلنت فوری انجام دادم، بدون درد و خیلی تمیز. کادر درمانی خیلی باحوصله بودن.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">سارا محمدی</div>
+            <div class="role">ایمپلنت فوری</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">عصب‌کشی تک‌جلسه‌ای بدون درد. قیمت منصفانه‌تر از بقیه بود.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">رضا کریمی</div>
+            <div class="role">عصب‌کشی</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">لمینت سرامیکی، لبخندم عالی شد. همهٔ مراحل با دقت توضیح داده شد.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">مریم بهرامی</div>
+            <div class="role">لمینت دندان</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">جرم‌گیری و بروساژ — لثه‌هام خیلی بهتر شد. محیط تمیز و آرام.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">علی رضایی</div>
+            <div class="role">جرم‌گیری</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">دندانپزشکی کودکم، بچه‌ام نترسید. دکترا خیلی مهربونن.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">نرگس حسینی</div>
+            <div class="role">دندانپزشکی کودکان</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">ایمپلنت فوری انجام دادم، بدون درد و خیلی تمیز. کادر درمانی خیلی باحوصله بودن.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">سارا محمدی</div>
+            <div class="role">ایمپلنت فوری</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">عصب‌کشی تک‌جلسه‌ای بدون درد. قیمت منصفانه‌تر از بقیه بود.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">رضا کریمی</div>
+            <div class="role">عصب‌کشی</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">لمینت سرامیکی، لبخندم عالی شد. همهٔ مراحل با دقت توضیح داده شد.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">مریم بهرامی</div>
+            <div class="role">لمینت دندان</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">جرم‌گیری و بروساژ — لثه‌هام خیلی بهتر شد. محیط تمیز و آرام.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">علی رضایی</div>
+            <div class="role">جرم‌گیری</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote">دندانپزشکی کودکم، بچه‌ام نترسید. دکترا خیلی مهربونن.</div>
+        <div class="testi-author">
+          <div class="testi-info">
+            <div class="name">نرگس حسینی</div>
+            <div class="role">دندانپزشکی کودکان</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ============ CONTACT ============ -->
-<section class="section section--dark" id="contact">
-	<div class="container">
-		<div class="section-head reveal">
-			<span class="kicker">تماس با ما</span>
-			<h2 style="color:#fff">به <span class="gold">تبسم</span> لبخند بزنید</h2>
-			<p>برای رزرو نوبت یا مشاوره رایگان، با ما در تماس باشید.</p>
-		</div>
-		<div class="contact-grid">
-			<div class="contact-info reveal">
-				<div class="c-item">
-					<div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-					<div><div class="lb">آدرس کلینیک</div><div class="vl fa">شهر زیبا، بلوار جوانمردان، ساختمان نوبهار، طبقه هفتم</div></div>
-				</div>
-				<div class="c-item">
-					<div class="ic"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
-					<div><div class="lb">تلفن ثابت</div><div class="vl">۰۲۱-۴۴۱۲۰۳۸۰</div></div>
-				</div>
-				<div class="c-item">
-					<div class="ic"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>
-					<div><div class="lb">موبایل / واتساپ</div><div class="vl">۰۹۰۲ ۳۰۹ ۹۶۰۱</div></div>
-				</div>
-			</div>
-			<div class="contact-card reveal reveal-delay-1">
-				<h4>رزرو نوبت</h4>
-				<p>فرم زیر را پر کنید؛ کارشناسان ما در اولین فرصت با شما تماس می‌گیرند.</p>
-				<form onsubmit="alert('این پیش‌نمایش است — برای رزرو واقعی با شماره‌های کلینیک تماس بگیرید 🌟');return false;">
-					<div class="form-row"><label>نام و نام خانوادگی</label><input type="text" placeholder="مثلاً: علی محمدی" required></div>
-					<div class="form-row"><label>شماره تماس</label><input type="tel" placeholder="۰۹۱۲..." dir="ltr" required></div>
-					<div class="form-row"><label>خدمت مورد نظر</label><input type="text" placeholder="ایمپلنت، ارتودنسی، ..."></div>
-					<div class="form-row"><label>پیام شما</label><textarea placeholder="توضیحات"></textarea></div>
-					<button class="btn btn-gold" style="width:100%" type="submit">ارسال درخواست نوبت</button>
-					<div class="form-note">نمونه‌ی نمایشی — برای نوبت واقعی تماس بگیرید: ۰۲۱-۴۴۱۲۰۳۸۰</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- DOCTOR BANNER (عکس واقعی دکتر از dctabasom) -->
+  <section class="doctor-banner reveal">
+    <div class="db-photo">
+      <img src="assets/doctor.webp" alt="دکتر محمد مهدی بخشیان">
+    </div>
+    <div class="db-text">
+      <h3>دکتر محمد مهدی بخشیان</h3>
+      <p class="db-role">دندانپزشک و زیبایی لبخند — بیش از ۱۰ سال تجربه تخصصی</p>
+    </div>
+  </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-	<div class="container">
-		<div class="footer-grid">
-			<div class="footer-brand">
-				<span class="brand-name">دندانپزشکی <em style="background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:normal">تبسم</em></span>
-				<p>کلینیک تخصصی دندانپزشکی در غرب تهران؛ بیش از ۱۰ سال افتخار در کنار لبخند شما. ایمپلنت، ارتودنسی، زیبایی و درمان بدون درد.</p>
-			</div>
-			<div class="footer-col">
-				<h5>دسترسی سریع</h5>
-				<a href="#services">خدمات</a>
-				<a href="#about">درباره ما</a>
-				<a href="#smiles">نمونه‌کارها</a>
-				<a href="#reviews">نظرات بیماران</a>
-			</div>
-			<div class="footer-col">
-				<h5>اطلاعات تماس</h5>
-				<a href="tel:02144120380" dir="ltr">۰۲۱-۴۴۱۲۰۳۸۰</a>
-				<a href="tel:09023099601" dir="ltr">۰۹۰۲ ۳۰۹ ۹۶۰۱</a>
-				<a>شهر زیبا، بلوار جوانمردان، ساختمان نوبهار، طبقه هفتم</a>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div>© ۱۴۰۴ — دندانپزشکی تبسم. تمامی حقوق محفوظ است.</div>
-			<div>طراحی‌شده با <span class="gold">✦ تبسم</span> — نسخه نمایشی مدرن</div>
-		</div>
-	</div>
-</footer>
+  <!-- CONTACT -->
+  <section class="contact-strip reveal" id="contact">
+    <div class="cs-title">رزرو نوبت و مشاوره<small>پاسخگویی همه‌روزه — اقساطی و بدون درد</small></div>
+    <div class="cs-actions">
+      <a class="cs-btn phone" href="tel:02144120380">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        ۰۲۱-۴۴۱۲۰۳۸۰
+      </a>
+      <a class="cs-btn wa" href="https://wa.me/989023099601">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.2-3.5-.7-2.9-1.2-4.8-4.2-4.9-4.4-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+        واتساپ
+      </a>
+    </div>
+  </section>
 
-<!-- شناور تماس -->
-<a class="float-call" href="tel:09023099601" aria-label="تماس">
-	<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-</a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>خدمات</h4>
+        <ul>
+          <li><a href="#services">ایمپلنت فوری</a></li>
+          <li><a href="#services">دندانپزشکی بدون درد</a></li>
+          <li><a href="#services">لمینت و کامپوزیت</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ارتباط</h4>
+        <ul>
+          <li><a href="tel:02144120380">۰۲۱-۴۴۱۲۰۳۸۰</a></li>
+          <li><a href="https://instagram.com/Dent_tabasom">Dent_tabasom</a></li>
+          <li><a href="https://wa.me/989023099601">واتساپ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col brand">
+        <img class="logo" src="logo.png" alt="لوگو تبسم">
+        <div class="footer-address">تهران، شهر زیبا، بلوار جوانمردان، ساختمان نوبهار، طبقهٔ ۷</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copy">© ۱۴۰۵ دندانپزشکی تبسم</span>
+      <div class="gold-line"></div>
+      <span class="copy">لبخند شما، افتخار ماست</span>
+    </div>
+  </footer>
 
-<script>
-/* ============ NAV ============ */
-(function(){
-	var toggle=document.getElementById('navToggle'),
-	    nav=document.getElementById('mainNav');
-	function closeNav(){nav.classList.remove('open');toggle.classList.remove('open');}
-	toggle.addEventListener('click',function(){nav.classList.toggle('open');toggle.classList.toggle('open');});
-	nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeNav);});
-})();
-
-/* ============ SCROLL STATE (header) ============ */
-(function(){
-	var h=document.getElementById('siteHeader');
-	function onScroll(){h.classList.toggle('is-scrolled',window.scrollY>24);}
-	window.addEventListener('scroll',onScroll,{passive:true});
-	onScroll();
-})();
-
-/* ============ REVEAL ON SCROLL ============ */
-(function(){
-	var els=document.querySelectorAll('.reveal');
-	if(!('IntersectionObserver' in window)){
-		els.forEach(function(el){el.classList.add('in');});
-		return;
-	}
-	var io=new IntersectionObserver(function(entries){
-		entries.forEach(function(e){
-			if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
-		});
-	},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-	els.forEach(function(el){io.observe(el);});
-})();
-
-/* ============ COUNTERS ============ */
-(function(){
-	var nums=document.querySelectorAll('[data-count]');
-	if(!nums.length)return;
-	function animate(n){
-		var target=+n.getAttribute('data-count'),
-		    dur=1400,start=null;
-		function tick(ts){
-			if(!start)start=ts;
-			var p=Math.min((ts-start)/dur,1);
-			var eased=1-Math.pow(1-p,3);
-			n.textContent=Math.round(target*eased).toLocaleString('fa-IR');
-			if(p<1)requestAnimationFrame(tick);
-		}
-		requestAnimationFrame(tick);
-	}
-	if(!('IntersectionObserver' in window)){nums.forEach(animate);return;}
-	var io=new IntersectionObserver(function(entries){
-		entries.forEach(function(e){
-			if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}
-		});
-	},{threshold:.5});
-	nums.forEach(function(n){io.observe(n);});
-})();
-</script>
-
-</body>
-</html>
+</main>
+<script src="front.js"></script>
