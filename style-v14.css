@@ -27,7 +27,7 @@ body.menu-open{overflow:hidden;}
 
 /* ===== NAV — editorial thin bar, no background ===== */
 .site-nav{
-  position:sticky;top:0;z-index:100;width:100%;margin:0 auto;
+  position:fixed;top:0;z-index:1000;width:100%;backdrop-filter:blur(10px);background:rgba(245,243,239,0.95);margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 24px;background:rgba(247,245,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--bg3);transition:all .3s ease;
