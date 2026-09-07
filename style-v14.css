@@ -55,7 +55,7 @@ body.menu-open{overflow:hidden;}
 .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--gold);}
 
 
-.nav-booking{display:inline-flex!important;align-items:center;gap:6px;font-weight:500;font-size:14px;color:var(--ink3);padding:8px 16px;border-radius:6px;transition:color .2s,background .2s;}
+.nav-booking{display:inline-flex!important;align-items:center;gap:6px;font-weight:500;font-size:14px;color:var(--ink3);white-space:nowrap;padding:8px 16px;border-radius:6px;transition:color .2s,background .2s;letter-spacing:.2px;}
 /* ===== HERO — split editorial, curved bottom ===== */
 .hero{
   position:relative;width:100%;

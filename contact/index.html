@@ -156,8 +156,14 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
         <div class="ct-row">
           <div class="ct-field">
             <label>نام</label>
-            <input type="text" id="r-name" placeholder="نام شما" required>
+            <input type="text" id="r-name" placeholder="نام" required>
           </div>
+          <div class="ct-field">
+            <label>نام خانوادگی</label>
+            <input type="text" id="r-family" placeholder="نام خانوادگی">
+          </div>
+        </div>
+        <div class="ct-row">
           <div class="ct-field">
             <label>خدمت دریافتی</label>
             <select id="r-service">
@@ -236,6 +242,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
 document.getElementById('review-form').addEventListener('submit',function(e){
   e.preventDefault();
   var name=document.getElementById('r-name').value;
+  var family=document.getElementById('r-family').value||'';
   var service=document.getElementById('r-service').value;
   var text=document.getElementById('r-text').value;
   if(!name||!text){alert('لطفاً نام و نظر را وارد کنید');return;}
