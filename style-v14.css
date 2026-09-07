@@ -163,6 +163,9 @@ body.menu-open{overflow:hidden;}
 /* ===== BLOG — editorial cards ===== */
 .blog{width:100%;max-width:none;margin:0 auto;padding:0 0 72px;}
 .blog-cards{display:flex;flex-wrap:wrap;gap:20px;overflow-x:auto;}
+.blog-thumb{width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:10px;}
+.blog-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
+.blog-card:hover .blog-thumb img{transform:scale(1.04);}
 .blog-card{width:340px;max-width:100%;display:flex;flex-direction:column;gap:12px;transition:transform .25s;flex-shrink:0;}
 .blog-card:hover{transform:translateY(-4px);}
 .blog-card .thumb{width:100%;height:200px;border-radius:10px;overflow:hidden;background:var(--bg3);}

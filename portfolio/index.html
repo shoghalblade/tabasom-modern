@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>نمونه کارها | کلینیک دندانپزشکی تبسم</title>
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style-v14.css">
+<style>
+.portfolio-hero{background:var(--dark);padding:100px 40px 60px;text-align:center;color:#fff;border-radius:0 0 32px 32px;}
+.portfolio-hero h1{font-weight:900;font-size:42px;margin-bottom:16px;}
+.portfolio-hero h1 .gold{color:var(--gold);}
+.portfolio-hero p{font-weight:300;font-size:17px;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto;}
+.portfolio-grid{width:100%;max-width:none;padding:60px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.portfolio-item{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:4/3;cursor:pointer;}
+.portfolio-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.portfolio-item:hover img{transform:scale(1.08);}
+.portfolio-item .overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 50%);display:flex;align-items:flex-end;padding:24px;opacity:0;transition:opacity .3s;}
+.portfolio-item:hover .overlay{opacity:1;}
+.portfolio-item .overlay span{color:#fff;font-weight:600;font-size:16px;}
+.portfolio-cta{text-align:center;padding:80px 40px;background:var(--dark);color:#fff;border-radius:32px;margin:0 40px 60px;}
+.portfolio-cta h2{font-weight:800;font-size:32px;margin-bottom:16px;}
+.portfolio-cta p{font-weight:300;font-size:16px;color:rgba(255,255,255,.6);margin-bottom:32px;}
+.portfolio-cta .btn-primary{display:inline-block;background:var(--gold);color:var(--dark);padding:14px 36px;border-radius:8px;font-weight:700;font-size:16px;text-decoration:none;transition:background .2s;}
+.portfolio-cta .btn-primary:hover{background:var(--gold-light);}
+@media(max-width:900px){
+  .portfolio-grid{grid-template-columns:1fr 1fr;padding:40px 20px;}
+  .portfolio-hero{padding:80px 20px 40px;}
+  .portfolio-hero h1{font-size:28px;}
+  .portfolio-cta{margin:0 20px 40px;padding:60px 20px;}
+}
+@media(max-width:600px){
+  .portfolio-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <nav class="site-nav" id="topnav">
+    <div class="nav-logo">
+      <a href="../">
+        <img src="../logo.png" alt="کلینیک دندانپزشکی تبسم">
+      </a>
+      <span class="nav-logo-text">دندانپزشکی تبسم<small>دندانپزشکی تخصصی شهر زیبا</small></span>
+    </div>
+    <div class="nav-items"><a href="../">خانه</a><a href="../#services">خدمات</a><a href="portfolio/">نمونه کارها</a><a href="../articles/">مقالات</a><a href="../#contact">تماس با ما</a></div>
+    <a class="nav-cta" href="tel:02144120380">رزرو نوبت</a>
+    <button class="nav-toggle" aria-label="منو" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+
+  <section class="portfolio-hero">
+    <h1>نمونه کارهای <span class="gold">تبسم</span></h1>
+    <p>نتایج واقعی درمان‌های دندانپزشکی — از ایمپلنت فوری تا لمینت و زیبایی لبخند</p>
+  </section>
+
+  <section class="portfolio-grid">
+    <div class="portfolio-item"><img src="../assets/gallery-1.jpg" alt="نمونه کار ۱" loading="lazy"><div class="overlay"><span>ایمپلنت فوری</span></div></div>
+    <div class="portfolio-item"><img src="../assets/gallery-2.jpg" alt="نمونه کار ۲" loading="lazy"><div class="overlay"><span>لمینت دندان</span></div></div>
+    <div class="portfolio-item"><img src="../assets/gallery-3.jpg" alt="نمونه کار ۳" loading="lazy"><div class="overlay"><span>کامپوزیت ونیر</span></div></div>
+    <div class="portfolio-item"><img src="../assets/gallery-4.jpg" alt="نمونه کار ۴" loading="lazy"><div class="overlay"><span>บริการ درمان ریشه</span></div></div>
+    <div class="portfolio-item"><img src="../assets/gallery-5.jpg" alt="نمونه کار ۵" loading="lazy"><div class="overlay"><span>ارتودنسی</span></div></div>
+    <div class="portfolio-item"><img src="../assets/gallery-6.jpg" alt="نمونه کار ۶" loading="lazy"><div class="overlay"><span>سفید کردن دندان</span></div></div>
+  </section>
+
+  <section class="portfolio-cta">
+    <h2>میخوای لبخندت رو عوض کنی؟</h2>
+    <p>مشاوره رایگان با متخصص — پاسخگویی همه‌روزه</p>
+    <a class="btn-primary" href="tel:02144120380">همین الان زنگ بزن</a>
+  </section>
+
+  <section class="contact-strip" id="contact">
+    <div class="cs-title">سؤالی دارید؟<small>مشاورهٔ رایگان — پاسخگویی همه‌روزه</small></div>
+    <div class="cs-actions">
+      <a class="cs-btn phone" href="tel:02144120380">۰۲۱-۴۴۱۲۰۳۸۰</a>
+      <a class="cs-btn wa" href="https://wa.me/989023099601">واتساپ</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>خدمات</h4>
+        <ul>
+          <li><a href="../#services">ایمپلنت فوری</a></li>
+          <li><a href="../#services">دندانپزشکی بدون درد</a></li>
+          <li><a href="../#services">لمینت و کامپوزیت</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ارتباط</h4>
+        <ul>
+          <li><a href="tel:02144120380">۰۲۱-۴۴۱۲۰۳۸۰</a></li>
+          <li><a href="https://instagram.com/Dent_tabasom">Dent_tabasom</a></li>
+          <li><a href="https://wa.me/989023099601">واتساپ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col brand">
+        <img class="logo" src="../logo.png" alt="لوگو تبسم">
+        <div class="footer-address">تهران، شهر زیبا، بلوار جوانمردان، ساختمان نوبهار، طبقهٔ ۷</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copy">© ۱۴۰۵ دندانپزشکی تبسم</span>
+      <div class="gold-line"></div>
+      <span class="copy">لبخند شما، افتخار ماست</span>
+    </div>
+  </footer>
+</main>
+<script src="../front.js"></script>
+</body>
+</html>
