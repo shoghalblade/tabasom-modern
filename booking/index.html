@@ -165,6 +165,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
             <label>خدمت مورد نظر</label>
             <select>
               <option value="">انتخاب کنید...</option>
+              <option>ویزیت و معاینه</option>
               <option>ایمپلنت فوری</option>
               <option>لمینت دندان</option>
               <option>کامپوزیت ونیر</option>
@@ -176,10 +177,7 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
               <option>دندانپزشکی عمومی</option>
             </select>
           </div>
-          <div class="bk-field">
-            <label>تاریخ مورد نظر</label>
-            <input type="date">
-          </div>
+          
         </div>
 
         <div class="bk-field">
@@ -212,7 +210,7 @@ function sendWhatsApp(){
   if(name||family) msg+='نام: '+name+' '+family+'\n';
   if(phone) msg+='تلفن: '+phone+'\n';
   if(service) msg+='خدمت: '+service+'\n';
-  if(date) msg+='تاریخ: '+date+'\n';
+
   if(note) msg+='توضیح: '+note+'\n';
   window.open('https://wa.me/989023099601?text='+encodeURIComponent(msg),'_blank');
 }

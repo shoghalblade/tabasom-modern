@@ -54,6 +54,8 @@ body.menu-open{overflow:hidden;}
 .nav-toggle.open span:nth-child(2){opacity:0;}
 .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--gold);}
 
+
+.nav-booking{background:var(--gold)!important;color:var(--dark)!important;font-weight:700!important;padding:10px 22px!important;border-radius:6px!important;display:none!important;}
 /* ===== HERO — split editorial, curved bottom ===== */
 .hero{
   position:relative;width:100%;
@@ -459,4 +461,5 @@ footer{width:100%;max-width:none;padding:48px 0 0;border-top:1px solid var(--bg3
   .booking-inner{grid-template-columns:1fr;padding:40px 24px;gap:32px;}
   .booking-text h2{font-size:26px;}
   .booking-section{padding:0 20px 48px;}
+  .nav-booking{display:inline-flex!important;align-items:center;gap:8px;}
 }
