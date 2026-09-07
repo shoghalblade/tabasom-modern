@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تماس با ما | کلینیک دندانپزشکی تبسم</title>
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style-v14.css">
+<style>
+:root{--gold:#c5a55a;--gold-light:#d4b96a;--gold-deep:#a68a3e;--dark:#1a1a1a;--bg:#f5f3ef;--ink:#222;--ink2:#555;--ink3:#888;--ink4:#aaa;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+
+/* HERO */
+.ct-hero{background:var(--dark);padding:100px 40px 60px;text-align:center;border-radius:0 0 32px 32px;position:relative;overflow:hidden;}
+.ct-hero::before{content:'';position:absolute;top:-150px;right:-150px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(197,165,90,.1) 0%,transparent 70%);}
+.ct-hero h1{font-weight:900;font-size:clamp(32px,4vw,48px);color:#fff;margin-bottom:12px;position:relative;}
+.ct-hero h1 .gold{color:var(--gold);}
+.ct-hero p{font-weight:300;font-size:17px;color:rgba(255,255,255,.5);max-width:500px;margin:0 auto;position:relative;}
+
+/* GRID */
+.ct-grid{width:100%;max-width:1200px;margin:0 auto;padding:60px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+
+/* CONTACT INFO */
+.ct-info{display:flex;flex-direction:column;gap:24px;}
+.ct-card{background:#fff;border-radius:16px;padding:28px;border:1px solid rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
+.ct-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.08);}
+.ct-card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.ct-card-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));display:flex;align-items:center;justify-content:center;}
+.ct-card-icon svg{width:20px;height:20px;color:var(--dark);}
+.ct-card h3{font-weight:700;font-size:16px;color:var(--ink);}
+.ct-card p{font-weight:400;font-size:14px;color:var(--ink2);line-height:1.8;}
+.ct-card a{color:var(--gold-deep);text-decoration:none;font-weight:600;transition:color .2s;}
+.ct-card a:hover{color:var(--gold);}
+
+/* MAP */
+.ct-map{border-radius:16px;overflow:hidden;height:280px;border:1px solid rgba(0,0,0,.06);}
+.ct-map iframe{width:100%;height:100%;border:0;}
+
+/* FORM */
+.ct-form-wrap{background:#fff;border-radius:16px;padding:36px;border:1px solid rgba(0,0,0,.06);}
+.ct-form-wrap h2{font-weight:700;font-size:20px;margin-bottom:6px;}
+.ct-form-wrap>p{font-size:14px;color:var(--ink3);margin-bottom:24px;}
+.ct-form{display:flex;flex-direction:column;gap:14px;}
+.ct-field{display:flex;flex-direction:column;gap:6px;}
+.ct-field label{font-size:13px;font-weight:500;color:var(--ink2);}
+.ct-field input,.ct-field textarea,.ct-field select{width:100%;padding:12px 16px;border:1px solid #e5e5e5;border-radius:10px;font-family:inherit;font-size:14px;color:var(--ink);direction:rtl;outline:none;transition:border-color .2s;background:#fafafa;}
+.ct-field input:focus,.ct-field textarea:focus,.ct-field select:focus{border-color:var(--gold);background:#fff;}
+.ct-field textarea{resize:vertical;min-height:100px;}
+.ct-field select{cursor:pointer;-webkit-appearance:none;appearance:none;}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ct-submit{padding:14px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--dark);font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;transition:all .25s;}
+.ct-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(197,165,90,.3);}
+
+/* STAR RATING */
+.ct-stars{display:flex;gap:6px;direction:ltr;}
+.ct-stars span{font-size:28px;cursor:pointer;color:#ddd;transition:color .15s;user-select:none;}
+.ct-stars span.active{color:#f5a623;}
+
+/* SUCCESS MSG */
+.ct-success{display:none;text-align:center;padding:40px 20px;}
+.ct-success svg{width:64px;height:64px;color:#22c55e;margin-bottom:16px;}
+.ct-success h3{font-weight:700;font-size:20px;margin-bottom:8px;}
+.ct-success p{font-size:14px;color:var(--ink3);}
+
+/* REVIEWS SECTION */
+.ct-reviews{width:100%;max-width:1200px;margin:0 auto;padding:0 40px 60px;}
+.ct-reviews h2{font-weight:700;font-size:24px;text-align:center;margin-bottom:32px;}
+.ct-reviews h2::after{content:'';display:block;width:40px;height:2px;background:var(--gold);margin:12px auto 0;}
+.ct-reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ct-review{background:#fff;border-radius:14px;padding:24px;border:1px solid rgba(0,0,0,.06);}
+.ct-review-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.ct-review-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-deep));display:flex;align-items:center;justify-content:center;color:var(--dark);font-weight:700;font-size:15px;}
+.ct-review-name{font-weight:600;font-size:14px;}
+.ct-review-date{font-size:12px;color:var(--ink4);}
+.ct-review-stars{color:#f5a623;font-size:14px;margin-bottom:8px;letter-spacing:2px;}
+.ct-review p{font-size:13.5px;color:var(--ink2);line-height:1.8;}
+
+@media(max-width:900px){
+  .ct-grid{grid-template-columns:1fr;padding:40px 20px;}
+  .ct-reviews{padding:0 20px 40px;}
+  .ct-reviews-grid{grid-template-columns:1fr;}
+  .ct-row{grid-template-columns:1fr;}
+  .ct-hero{padding:80px 20px 40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="topnav" style="position:sticky;top:0;z-index:100;width:100%;background:var(--bg);border-bottom:1px solid rgba(0,0,0,.06);">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;">
+    <a href="../" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <img src="../logo.png" alt="تبسم" style="height:40px;">
+      <span style="color:var(--ink);font-weight:600;font-size:15px;">دندانپزشکی تبسم</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../" style="color:var(--ink3);text-decoration:none;font-size:14px;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink3)'">خانه</a>
+      <a href="../portfolio/" style="color:var(--ink3);text-decoration:none;font-size:14px;">نمونه کارها</a>
+      <a href="../articles/" style="color:var(--ink3);text-decoration:none;font-size:14px;">مقالات</a>
+      <a href="tel:09023099601" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--dark);padding:10px 22px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        رزرو نوبت
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="ct-hero">
+  <h1>تماس <span class="gold">با ما</span></h1>
+  <p>مشاوره رایگان — پاسخگویی همه‌روزه — منتظر صداتون هستیم</p>
+</section>
+
+<!-- GRID -->
+<section class="ct-grid">
+  <!-- RIGHT - INFO -->
+  <div class="ct-info">
+    <div class="ct-card">
+      <div class="ct-card-head">
+        <div class="ct-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h3>تلفن تماس</h3>
+      </div>
+      <p><a href="tel:09023099601" style="font-size:18px;">۰۹۰۲-۳۰۹۹۶۰۱</a></p>
+      <p style="margin-top:8px;font-size:13px;color:var(--ink4);">همه‌روزه از ساعت ۹ صبح تا ۹ شب</p>
+    </div>
+
+    <div class="ct-card">
+      <div class="ct-card-head">
+        <div class="ct-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>آدرس کلینیک</h3>
+      </div>
+      <p>تهران، شهر زیبا، بلوار جوانمردان، ساختمان نوبهار، طبقهٔ ۷</p>
+    </div>
+
+    <div class="ct-card">
+      <div class="ct-card-head">
+        <div class="ct-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <h3>شبکه‌های اجتماعی</h3>
+      </div>
+      <p><a href="https://instagram.com/Dent_tabasom">Dent_tabasom</a> — اینستاگرام</p>
+      <p style="margin-top:6px;"><a href="https://wa.me/989023099601">واتساپ</a> — پیام مستقیم</p>
+    </div>
+
+    <div class="ct-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.5!2d51.4!3d35.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDQyJzAwLjAiTiA1McKwMjQnMDAuMCJF!5e0!3m2!1sfa!2sir!4v1" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- LEFT - FORM -->
+  <div>
+    <div class="ct-form-wrap" id="review-form-wrap">
+      <h2>ثبت نظر</h2>
+      <p>نظرتون رو بنویسید تا بقیه بیماران هم ببینن</p>
+      <form class="ct-form" id="review-form">
+        <div class="ct-row">
+          <div class="ct-field">
+            <label>نام</label>
+            <input type="text" id="r-name" placeholder="نام شما" required>
+          </div>
+          <div class="ct-field">
+            <label>خدمت دریافتی</label>
+            <select id="r-service">
+              <option value="">انتخاب کنید...</option>
+              <option>ویزیت و معاینه</option>
+              <option>ایمپلنت فوری</option>
+              <option>لمینت دندان</option>
+              <option>کامپوزیت ونیر</option>
+              <option>عصب‌کشی</option>
+              <option>ارتودنسی</option>
+              <option>سفید کردن دندان</option>
+              <option>جراحی دندان عقل</option>
+              <option>پروتز دندان</option>
+              <option>دندانپزشکی عمومی</option>
+            </select>
+          </div>
+        </div>
+        <div class="ct-field">
+          <label>امتیاز</label>
+          <div class="ct-stars" id="ct-stars">
+            <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
+          </div>
+        </div>
+        <div class="ct-field">
+          <label>نظر شما</label>
+          <textarea id="r-text" placeholder="تجربه‌تون رو بنویسید..." required></textarea>
+        </div>
+        <button type="submit" class="ct-submit">ثبت نظر</button>
+      </form>
+      <div class="ct-success" id="ct-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>نظر شما ثبت شد!</h3>
+        <p>ممنون از نظرتون — بعد از تأیید نمایش داده میشه</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="ct-reviews" id="ct-reviews">
+  <h2>نظرات بیماران</h2>
+  <div class="ct-reviews-grid" id="reviews-grid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer style="width:100%;border-top:1px solid rgba(0,0,0,.06);padding:48px 0 0;">
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px;padding-bottom:40px;">
+    <div>
+      <h4 style="font-weight:600;font-size:15px;margin-bottom:12px;">خدمات</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li><a href="../#services" style="color:var(--ink3);text-decoration:none;font-size:14px;">ایمپلنت فوری</a></li>
+        <li><a href="../#services" style="color:var(--ink3);text-decoration:none;font-size:14px;">لمینت و کامپوزیت</a></li>
+        <li><a href="../#services" style="color:var(--ink3);text-decoration:none;font-size:14px;">دندانپزشکی بدون درد</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-weight:600;font-size:15px;margin-bottom:12px;">ارتباط</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li><a href="tel:09023099601" style="color:var(--ink3);text-decoration:none;font-size:14px;">۰۹۰۲-۳۰۹۹۶۰۱</a></li>
+        <li><a href="https://instagram.com/Dent_tabasom" style="color:var(--ink3);text-decoration:none;font-size:14px;">Dent_tabasom</a></li>
+        <li><a href="https://wa.me/989023099601" style="color:var(--ink3);text-decoration:none;font-size:14px;">واتساپ</a></li>
+      </ul>
+    </div>
+    <div style="text-align:left;">
+      <img src="../logo.png" alt="لوگو تبسم" style="height:48px;margin-bottom:12px;">
+      <p style="font-size:13px;color:var(--ink4);max-width:240px;line-height:1.8;">تهران، شهر زیبا، بلوار جوانمردان، ساختمان نوبهار، طبقهٔ ۷</p>
+    </div>
+  </div>
+  <div style="width:100%;max-width:1200px;margin:0 auto;padding:16px 40px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,.06);">
+    <span style="font-size:13px;color:var(--ink4);">© ۱۴۰۵ دندانپزشکی تبسم</span>
+    <span style="font-size:13px;color:var(--ink4);">لبخند شما، افتخار ماست</span>
+  </div>
+</footer>
+
+<script>
+// Star rating
+var stars=document.querySelectorAll('#ct-stars span');
+var rating=0;
+stars.forEach(function(s){
+  s.addEventListener('click',function(){
+    rating=parseInt(this.dataset.v);
+    stars.forEach(function(x){x.classList.toggle('active',parseInt(x.dataset.v)<=rating);});
+  });
+});
+
+// Submit review
+document.getElementById('review-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var name=document.getElementById('r-name').value;
+  var service=document.getElementById('r-service').value;
+  var text=document.getElementById('r-text').value;
+  if(!name||!text||!rating){alert('لطفاً نام، امتیاز و نظر را وارد کنید');return;}
+  var reviews=JSON.parse(localStorage.getItem('tabasom-reviews')||'[]');
+  reviews.unshift({name:name,service:service,rating:rating,text:text,date:new Date().toLocaleDateString('fa-IR')});
+  localStorage.setItem('tabasom-reviews',JSON.stringify(reviews));
+  document.getElementById('review-form').style.display='none';
+  document.getElementById('ct-success').style.display='block';
+  renderReviews();
+});
+
+// Render reviews
+function renderReviews(){
+  var reviews=JSON.parse(localStorage.getItem('tabasom-reviews')||'[]');
+  var grid=document.getElementById('reviews-grid');
+  if(!reviews.length){grid.innerHTML='<p style="color:var(--ink4);text-align:center;grid-column:1/-1;">هنوز نظری ثبت نشده</p>';return;}
+  grid.innerHTML=reviews.slice(0,9).map(function(r){
+    var stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
+    var initial=r.name.charAt(0);
+    return '<div class="ct-review"><div class="ct-review-head"><div class="ct-review-avatar">'+initial+'</div><div><div class="ct-review-name">'+r.name+'</div><div class="ct-review-date">'+r.date+(r.service?' · '+r.service:'')+'</div></div></div><div class="ct-review-stars">'+stars+'</div><p>'+r.text+'</p></div>';
+  }).join('');
+}
+renderReviews();
+</script>
+
+</body>
+</html>
