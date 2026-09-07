@@ -220,6 +220,21 @@ direction:rtl;}
 .db-text p{font-weight:300;font-size:clamp(13px,1.4vw,16px);color:var(--ink4);}
 
 /* ===== CONTACT — editorial dark strip ===== */
+
+/* ===== BOOKING ===== */
+.booking-section{width:100%;margin:0 auto;padding:0 40px 72px;}
+.booking-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;background:var(--dark);border-radius:24px;padding:60px 48px;}
+.booking-text h2{font-weight:800;font-size:36px;color:#fff;margin-bottom:16px;line-height:1.4;}
+.booking-text h2 .gold{color:var(--gold);}
+.booking-text p{font-weight:300;font-size:17px;color:rgba(255,255,255,.6);line-height:1.8;}
+.booking-form form{display:flex;flex-direction:column;gap:14px;}
+.booking-form input,.booking-form select{width:100%;padding:14px 18px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:15px;direction:rtl;outline:none;transition:border-color .2s;}
+.booking-form input::placeholder{color:rgba(255,255,255,.4);}
+.booking-form input:focus,.booking-form select:focus{border-color:var(--gold);}
+.booking-form select{cursor:pointer;-webkit-appearance:none;appearance:none;}
+.booking-form select option{background:var(--dark);color:#fff;}
+.booking-btn{width:100%;margin-top:4px;cursor:pointer;}
+
 .contact-strip{width:100%;max-width:none;margin:0 auto;background:var(--dark);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:32px 40px;color:#fff;}
 .contact-strip .cs-title{font-weight:800;font-size:clamp(18px,2.2vw,26px);}
 .contact-strip .cs-title small{display:block;font-weight:300;font-size:13px;color:rgba(255,255,255,.4);margin-top:4px;}
@@ -440,4 +455,8 @@ footer{width:100%;max-width:none;padding:48px 0 0;border-top:1px solid var(--bg3
 .testi-card .name{font-weight:700;font-size:15.5px;}
 .testi-card .role{font-size:12.5px;color:var(--gold-deep,#9a7d3b);}
 
-.db-role{color:var(--gold,#c5a55a);font-weight:600;font-size:14px;margin:4px 0 6px;}
+.db-role{color:var(--gold,#c5a55a);font-weight:600;font-size:14px;margin:4px 0 6px;  /* booking */
+  .booking-inner{grid-template-columns:1fr;padding:40px 24px;gap:32px;}
+  .booking-text h2{font-size:26px;}
+  .booking-section{padding:0 20px 48px;}
+}
