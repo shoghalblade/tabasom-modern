@@ -89,15 +89,25 @@ body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--ink);li
 <body>
 
 <!-- NAV -->
-<nav class="site-nav" id="topnav" style="position:sticky;top:0;z-index:100;width:100%;background:var(--dark);border-bottom:1px solid rgba(255,255,255,.06);">
-  <div style="width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;">
+
+<nav class="site-nav" id="topnav" style="position:fixed;top:0;z-index:1000;width:100%;backdrop-filter:blur(10px);background:rgba(245,243,239,0.95);border-bottom:1px solid rgba(0,0,0,.06);">
+  <div style="width:100%;max-width:1440px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px;">
     <a href="../" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <img src="../logo.png" alt="تبسم" style="height:40px;">
-      <span style="color:#fff;font-weight:600;font-size:15px;">دندانپزشکی تبسم</span>
+      <img src="../logo.png" alt="تبسم" style="height:44px;">
+      <span style="color:var(--ink);font-weight:700;font-size:16px;">دندانپزشکی تبسم</span>
     </a>
-    <a href="../" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;font-weight:400;transition:color .2s;" onmouseover="this.style.color='#c5a55a'" onmouseout="this.style.color='rgba(255,255,255,.6)'">← بازگشت به صفحه اصلی</a>
+    <div class="nav-items" id="nav-items">
+      <a href="../">خانه</a>
+      <a href="../#services">خدمات</a>
+      <a href="../portfolio/">نمونه کارها</a>
+      <a href="../articles/">مقالات</a>
+      <a href="../contact/">تماس با ما</a>
+      <a href="../booking/" class="nav-booking">رزرو نوبت</a>
+    </div>
+    <button class="nav-toggle" aria-label="منو" aria-expanded="false" onclick="document.getElementById('nav-items').classList.toggle('open');this.classList.toggle('open');"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
 
 <section class="bk-hero">
   <div class="bk-float bk-float-1"></div>
