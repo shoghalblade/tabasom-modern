@@ -18,6 +18,14 @@
     toggle.onclick = function (e) { if (e) e.preventDefault(); menu.classList.contains('open') ? close() : openMenu(); };
     var links = menu.querySelectorAll('a');
     for (var i = 0; i < links.length; i++) links[i].onclick = close;
+    // Mobile dropdown toggle
+    var ddBtns = menu.querySelectorAll('.nav-dropdown-toggle');
+    for (var d = 0; d < ddBtns.length; d++) {
+      ddBtns[d].addEventListener('click', function(e) {
+        e.preventDefault(); e.stopPropagation();
+        this.parentElement.classList.toggle('open');
+      });
+    }
     document.addEventListener('touchstart', function (e) {
       if (menu.classList.contains('open') && !menu.contains(e.target) && !toggle.contains(e.target)) close();
     }, { passive: true });
