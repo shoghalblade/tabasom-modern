@@ -23,7 +23,12 @@
     for (var d = 0; d < ddBtns.length; d++) {
       ddBtns[d].addEventListener('click', function(e) {
         e.preventDefault(); e.stopPropagation();
-        this.parentElement.classList.toggle('open');
+        var parent = this.parentElement;
+        var wasOpen = parent.classList.contains('open');
+        // close other dropdowns first
+        var all = menu.querySelectorAll('.nav-dropdown.open');
+        for (var x = 0; x < all.length; x++) all[x].classList.remove('open');
+        if (!wasOpen) parent.classList.add('open');
       });
     }
     document.addEventListener('touchstart', function (e) {
