@@ -532,3 +532,18 @@ footer{width:100%;max-width:none;padding:48px 0 0;border-top:1px solid var(--bg3
   .service-article{padding:76px 0 48px;}
   .service-article h1{font-size:24px;padding-top:24px;}
 }
+
+/* ===== FLOATING CONTACT FAB (moved from inline index.html) ===== */
+.fab-container{position:fixed;bottom:24px;right:24px;z-index:999;font-family:inherit;}
+.fab-main{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--dark);border:none;box-shadow:0 6px 20px rgba(197,165,90,.4);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .3s,box-shadow .3s;}
+.fab-main:hover{transform:scale(1.08);box-shadow:0 8px 25px rgba(197,165,90,.6);}
+.fab-menu{position:absolute;bottom:75px;right:0;display:flex;flex-direction:column;gap:12px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all .3s ease;}
+.fab-container.open .fab-menu{opacity:1;visibility:visible;transform:translateY(0);}
+.fab-container.open .fab-icon-chat{display:none;}
+.fab-container.open .fab-icon-close{display:block;}
+.fab-item{display:flex;align-items:center;gap:10px;background:#fff;color:var(--dark);padding:10px 16px;border-radius:50px;box-shadow:0 4px 15px rgba(0,0,0,.1);text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap;transition:transform .2s,box-shadow .2s;border:1px solid rgba(0,0,0,.06);}
+.fab-item:hover{transform:translateX(-4px);box-shadow:0 6px 20px rgba(0,0,0,.15);color:var(--gold-deep);}
+.fab-item svg{flex-shrink:0;}
+.fab-item.phone{color:#0284c7;}
+.fab-item.whatsapp{color:#25d366;}
+.fab-item.bale{color:#0088cc;}
