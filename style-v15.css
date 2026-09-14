@@ -48,6 +48,7 @@ body.menu-open{overflow:hidden;}
   padding:8px 16px;border-radius:6px;cursor:pointer;
   background:none;border:none;font-family:inherit;letter-spacing:.2px;
   transition:color .2s,background .2s;
+  margin:0;outline:none;
 }
 .nav-dropdown-toggle:hover{color:var(--ink);background:var(--bg2);}
 .nav-dropdown-toggle svg{transition:transform .25s;opacity:.55;}
@@ -73,7 +74,7 @@ body.menu-open{overflow:hidden;}
   font-size:14px;font-weight:500;color:var(--ink2);direction:rtl;text-align:right;
   transition:all .2s ease;white-space:nowrap;
 }
-.nav-dropdown-menu a:hover{color:var(--ink);background:var(--gold-bg);transform:translateX(4px);}
+.nav-dropdown-menu a:hover{color:var(--ink);background:var(--bg2);transform:translateX(4px);}
 .nav-cta{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--ink);color:var(--gold);border:1px solid var(--ink);
