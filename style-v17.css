@@ -547,3 +547,6 @@ footer{width:100%;max-width:none;padding:48px 0 0;border-top:1px solid var(--bg3
 .fab-item.phone{color:#0284c7;}
 .fab-item.whatsapp{color:#25d366;}
 .fab-item.bale{color:#0088cc;}
+
+.service-article figure.service-article-img{margin:24px 0;border-radius:12px;overflow:hidden;}
+.service-article figure.service-article-img img{width:100%;height:auto;display:block;border-radius:12px;}
